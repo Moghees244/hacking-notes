@@ -1,5 +1,3 @@
-# Enumeration
-
 ## Uncredentialed Enumeration
 
 Once you are in the network and have enumerated live hosts using nmap, tcpdump or whatever tool.
@@ -8,11 +6,6 @@ It is important to get this access in the early stages of pentest so we can perf
 
 Note: It’s possible to do this using the SYSTEM account because it can impersonate the computer.
 A computer object is treated as a domain user account (with some differences, such as authenticating across forest trusts). 
-
-
-### LLMNR Poisoning
-
-We can go for attacks like [LLMNR Poisoning](llmnr-poisoning.md)
 
 
 ### Users Enumeration
@@ -87,6 +80,7 @@ This count is maintained separate on each DC in case of multiple DCs.
  # using enum4linux-ng (better choice)
  enum4linux-ng -P $DC_IP -oA domain_info
  ```
+
 
 - SMB NULL Session from Windows:
 
@@ -172,124 +166,3 @@ spraying passwords.
 - VDI implementations using AD authentication such as VMware Horizon
 - VPN portals (Citrix, SonicWall, OpenVPN, Fortinet, etc. that use AD authentication)
 - Custom web applications that use AD authentication
-
-## Security Controls Enumeration
-
-- Once we get foothold in domain, it is important to enumerate security controls.
-- As some security controls may effect our tools. We may need to work at 
-"living off the land" by using tools that exist natively on the hosts.
-
- ```shell
- # Windows Defender, if RealTimeProtectionEnabled=True means
- # defender is active
- Get-MpComputerStatus
-
- # AppLocker
- Get-AppLockerPolicy -Effective | select -ExpandProperty RuleCollections
-
- # PowerShell Constrained Language Mode, if output is ConstrainedLanguage
- $ExecutionContext.SessionState.LanguageMode
-
- # Local Administrator Password Solution (LAPS)
- # LAPSToolkit greatly facilitates this with several functions.
- Find-LAPSDelegatedGroups
- # The Find-AdmPwdExtendedRights checks the rights on each computer
- # with LAPS enabled for any groups with read access and users with "All Extended Rights." 
- Find-AdmPwdExtendedRights
- # We can use the Get-LAPSComputers function to search for computers that have LAPS enabled,
- # when passwords expire, and even the randomized passwords in cleartext if our user has access.
- Get-LAPSComputers
- ```
-
-## Credentialed Enumeration
-
-For credentialed enumeration, we must have a user's cleartext password, NTLM 
-password hash, or SYSTEM access on a domain-joined host.
-
-Once we have any of the above, we should start enumerating domain. We are 
-interested in domain users and computers attributes, group membership,
-Group Policy Objects, permissions, ACLs, trusts and more
-
-### From Linux:
-
-- Enumeration using `crackmapexec` and `smbmap`:
-
- ```shell
- # getting password policy
- crackmapexec smb $DC_IP -u username -p password --pass-pol
-
- # getting usernames
- crackmapexec smb $DC_IP -u username -p password --users
-
- # getting groups
- crackmapexec smb $DC_IP -u username -p password --groups
-
- # getting loggin in users on a machine
- crackmapexec smb $MACHINE_IP -u username -p password --loggedon-users
-
- # getting shares info
- crackmapexec smb $MACHINE_IP -u username -p password --shares
- # getting list of readable files on a share
- # results at /tmp/cme_spider_plus/<ip of host>
- crackmapexec smb $MACHINE_IP -u username -p password -M spider_plus --share $SHARE_NAME
-
- # getting shares info using SMBMap
- smbmap -u username -p password -d $DOMAIN -H $MACHINE_IP
- # Recursive list of all directories
- smbmap -u username -p password -d $DOMAIN -H $MACHINE_IP -R $SHARE_NAME --dir-only
- ```
-
-- Enumeration using `rpcclient`:
-
-Note: 
-- A Relative Identifier (RID) is a unique identifier (represented in hexadecimal format)
- utilized by Windows to track and identify objects.
-- When an object is created within a domain, SID will be combined with a RID (RID at end) 
-to make a unique value used to represent the object.
-- RID is unique for object only within its domain.
-- The built-in Administrator account will always have the RID value Hex 0x1f4, or 500.
-
- ```shell
- # staring a session. you can also try getting NULL session
- rpcclient -U "$u%$Password" $DC_IP
-
- # getting users and their RIDs
- rpcclient $> enumdomusers
-
- # getting user info using RID
- rpcclient $> queryuser 0x457
- ```
-
-- Enumeration using Impacket Toolkit
-
- ```shell
- # psexec creates a remote service by uploading an executable to the ADMIN$ share
- # on the target. It then registers the service via RPC and the Windows Service Control
- # Manager. Once established, communication happens over a named pipe, providing shell
- # as SYSTEM (if you have local admin privs).
- psexec.py $DOMAIN/username:'password'@$DC_IP
-
- # Wmiexec.py utilizes Windows Management Instrumentation and provides semi-interactive
- # shell. It is stealthy (preferred). Each command will execute a new cmd.exe from WMI
- # event ID 4688: A new process has been created, may catch it
- # runs in the context of user
- wmiexec.py $DOMAIN/username:'password'@$DC_IP
- ```
-
-- Automating search using `Windapsearch ` and `Bloodhound`:
-
- ```shell
- # getting domain admins
- python3 windapsearch.py --dc-ip $DC_IP -u username@$DOMAIN -p password --da
- # getting privileged users
- python3 windapsearch.py --dc-ip $DC_IP -u username@$DOMAIN -p password -PU
-
- # gathering domaion information using BloodHound and upload to UI
- bloodhound-python -u 'username' -p 'password' -ns $DC_IP -d $DOMAIN -c all --zip domain.zip
-
- ```
-
-- A handy cheatsheet: https://wadcoms.github.io/
-
-
-### From Windows:
