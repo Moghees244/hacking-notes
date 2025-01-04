@@ -1,4 +1,5 @@
-# Initial Domain Enumeration
+# Domain Enumeration From Linux
+
 
 For credentialed enumeration, we must have a user's cleartext password, NTLM 
 password hash, or SYSTEM access on a domain-joined host.
@@ -7,8 +8,6 @@ Once we have any of the above, we should start enumerating domain. We are
 interested in domain users and computers attributes, group membership,
 Group Policy Objects, permissions, ACLs, trusts and more.
 
-
-## From Linux
 
 - Enumeration using `crackmapexec` and `smbmap`:
 
