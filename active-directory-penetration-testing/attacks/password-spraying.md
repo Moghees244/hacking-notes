@@ -1,4 +1,4 @@
-## Uncredentialed Enumeration
+# Password Spraying
 
 Once you are in the network and have enumerated live hosts using nmap, tcpdump or whatever tool.
 We need to find a way to establish foothold in domain by gettng username and credentials (clear text or NTLM hash).
