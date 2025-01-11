@@ -88,7 +88,7 @@ Following are the commonly used commands of powerview:
  Get-DomainDFSShare
  ```
 
-### GPO Functions:
+### GPO Functions
 
  ```shell
  # Will return all GPOs or specific GPO objects in AD
@@ -98,7 +98,7 @@ Following are the commonly used commands of powerview:
  Get-DomainPolicy
  ```
 
-### Computer Enumeration Functions:
+### Computer Enumeration Functions
 
  ```shell
  # Enumerates local groups on the local or a remote machine
@@ -113,7 +113,7 @@ Following are the commonly used commands of powerview:
  Test-AdminAccess
  ```
 
-### Threaded 'Meta'-Functions:
+### Threaded 'Meta'-Functions
 
  ```shell
  # Finds machines where specific users are logged in
@@ -126,7 +126,7 @@ Following are the commonly used commands of powerview:
  Find-LocalAdminAccess
  ```
 
-### Domain Trust Functions:
+### Domain Trust Functions
 
  ```shell
  # Returns domain trusts for the current domain or a specified domain
