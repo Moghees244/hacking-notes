@@ -39,6 +39,9 @@
     * [🔧 Practices for Hardening](active-directory-penetration-testing/README.md)
 
 * [🕸️ Web Penetration Testing](web-app-penetration-testing/README.md)
-  * [🔍 Enumeration](web-app-penetration-testing/enumeration.md)
+  * **🔍 Reconnaissance** 
+    * [📘 Introduction](web-app-penetration-testing/Recon/reconnaissance.md)  
+    * [📡 Passive Recon](web-app-penetration-testing/Recon/passive-reconnaissance.md)
+    * [🔎 Active Recon](web-app-penetration-testing/Recon/active-reconnaissance.md)
 
 * [🕷️ Malware Development](web-app-penetration-testing/README.md)
