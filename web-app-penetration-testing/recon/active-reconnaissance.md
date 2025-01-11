@@ -57,8 +57,8 @@ ffuf -w <wordlist_file>:FUZZ -u http://FUZZ.<target_domain>
 ```
 
 ```shell
-Note: While using ffuf, you should use flags like -fs, -fc, -mc, -ms etc to match or filter the responses.
-run ffuf -h for details
+Note: While using ffuf, you should use flags like -fs, -fc, -mc, -ms etc to match
+or filter the responses. Run ffuf -h for details
 ```
 
 
@@ -78,8 +78,6 @@ ffuf -w <wordlist_file>:FUZZ -u http://<target_domain>/ -H 'Host: FUZZ.<target_d
 
 - When performing reconnaissance on a web server, it's essential to check for common files that may contain
  useful information or reveal critical metadata about the website.
-
-### Key Files to Check:
 - `robots.txt`: Provides directives for web crawlers, which can sometimes reveal sensitive or restricted areas of the website.
 - `.well-known/` Directory: This directory is used to store various important metadata files for standardized protocols
  and configurations.
