@@ -5,8 +5,8 @@
 * [🪟 **Active Directory Penetration Testing**](active-directory-penetration-testing/README.md)
 
   * **🔍 Recon & Initial Access**  
-    * [Network Scanning](active-directory-penetration-testing/README.md)  
-    * [Attacking Common Services](active-directory-penetration-testing/README.md)
+    * [Network Scanning]()  
+    * [Attacking Common Services]()
 
   * **🚪 Breaching the Domain**
     * [LLMNR Poisoning](active-directory-penetration-testing/attacks/llmnr-poisoning.md) 
@@ -28,15 +28,15 @@
     * [Kerberoasting](active-directory-penetration-testing/attacks/Kerberoasting.md)  
 
   * **📜 ACL & Trust Exploitation**  
-    * [ACL Abuse](active-directory-penetration-testing/README.md)  
-    * [Cross-Domain Trusts Abuse](active-directory-penetration-testing/README.md)  
-    * [Cross-Forest Trusts Abuse](active-directory-penetration-testing/README.md)  
+    * [ACL Abuse]()  
+    * [Cross-Domain Trusts Abuse]()  
+    * [Cross-Forest Trusts Abuse]()  
 
   * **🛡️ Mitigation & Detection**  
     * [Detection Techniques](active-directory-penetration-testing/security-controls/mitigation-and-detection.md)  
 
   * **🛠️ Hardening Active Directory**  
-    * [Practices for Hardening](active-directory-penetration-testing/README.md)
+    * [Practices for Hardening]()
 
 * [🕸️ Web Penetration Testing](web-app-penetration-testing/README.md)
   * **🔍 Reconnaissance** 
@@ -44,4 +44,8 @@
     * [Passive Recon](web-app-penetration-testing/Recon/passive-reconnaissance.md)
     * [Active Recon](web-app-penetration-testing/Recon/active-reconnaissance.md)
 
-* [🕷️ Malware Development](web-app-penetration-testing/README.md)
+  * **🔍 Remediations**
+    * [Remediations](web-app-penetration-testing/Remediations/remediations.md)  
+
+
+* [🕷️ Malware Development]()

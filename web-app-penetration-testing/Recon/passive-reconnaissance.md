@@ -99,4 +99,4 @@ site:<DOMAIN> intext:"TEXT_TO_FIND"
 
 - The Wayback Machine is a digital archive of the World Wide Web and other information on the Internet. It has been archiving websites since 1996.
 - We can use it for: Tracking Changes and Identifying Patterns, Uncovering Hidden Assets and Vulnerabilities, Gathering Intelligence
-- URL: https://web.archive.org/
+- URL: [WayBack Machine](https://web.archive.org/)
