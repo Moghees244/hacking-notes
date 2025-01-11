@@ -1,4 +1,4 @@
-# Active Directory Penetration Testing
+# 🪟 Active Directory Penetration Testing
 
 ## Introduction
 
@@ -8,9 +8,9 @@ Penetration testing (or ethical hacking) of Active Directory environments involv
 
 This website serves as a comprehensive guide to AD penetration testing, covering a range of techniques, tools, and best practices for assessing the security of an Active Directory environment. From enumeration and privilege escalation to attack vectors like Kerberos and pass-the-hash, this resource provides step-by-step instructions, detailed explanations, and practical examples to help you understand the various methods and tools used in AD penetration testing.
 
-
 ### Key Topics Covered:
-- **Enumeration**: Techniques for discovering valuable information about the AD environment.
-- **Privilege Escalation**: Methods for escalating privileges within the AD infrastructure.
-- **Attack Vectors**: Common techniques like Kerberos attacks, pass-the-hash, and more.
-- **Defensive Measures**: Steps for securing Active Directory against common attack methods.
+
+* **Enumeration**: Techniques for discovering valuable information about the AD environment.
+* **Privilege Escalation**: Methods for escalating privileges within the AD infrastructure.
+* **Attack Vectors**: Common techniques like Kerberos attacks, pass-the-hash, and more.
+* **Defensive Measures**: Steps for securing Active Directory against common attack methods.

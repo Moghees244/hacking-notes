@@ -1,4 +1,4 @@
-# Web Application Penetration Testing
+# 🕸️ Web Penetration Testing
 
 ## Introduction
 
@@ -9,7 +9,8 @@ Penetration testing (or ethical hacking) of web applications involves identifyin
 This repository serves as a comprehensive guide to web penetration testing, covering a range of techniques, tools, and best practices for assessing the security of web applications. From reconnaissance and vulnerability discovery to exploitation and post-exploitation techniques, this resource provides step-by-step instructions, detailed explanations, and practical examples to help you understand the various methods and tools used in web penetration testing.
 
 ### Key Topics Covered:
-- **Reconnaissance**: Techniques for gathering information about the target web application.
-- **Vulnerability Discovery**: Methods for identifying common vulnerabilities like SQL injection, cross-site scripting (XSS), and more.
-- **Exploitation**: Techniques for exploiting discovered vulnerabilities to gain unauthorized access or perform malicious actions.
-- **Defensive Measures**: Best practices for securing web applications against common attack methods.
+
+* **Reconnaissance**: Techniques for gathering information about the target web application.
+* **Vulnerability Discovery**: Methods for identifying common vulnerabilities like SQL injection, cross-site scripting (XSS), and more.
+* **Exploitation**: Techniques for exploiting discovered vulnerabilities to gain unauthorized access or perform malicious actions.
+* **Defensive Measures**: Best practices for securing web applications against common attack methods.
