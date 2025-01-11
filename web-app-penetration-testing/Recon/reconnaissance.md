@@ -1,5 +1,3 @@
-# Reconnaissance 
-
 This process involves systematically and meticulously collecting information about a target website or web application.
 The primary goals of web reconnaissance include:
 
