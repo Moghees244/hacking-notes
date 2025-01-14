@@ -35,3 +35,38 @@
 
 - event ID 4625: An account failed to log on over a short period may indicate a password spraying attack.
 - event ID 4771: Kerberos pre-authentication failed, which may indicate an LDAP password spraying attempt
+
+
+## Kerberoasting 
+
+### Remediation
+
+- Set a long and complex password or passphrase for non-managed service accounts
+- It is recommended to use MSA and gMSA, which use very complex passwords, and
+ automatically rotate on a set interval or accounts set up with LAPS.
+- Monitor the TGS ticket requests, any abnormal number of requests can signal the
+ use of automated kerberoasting tools.
+- Restricting the use of the RC4 algorithm. (Test properly)
+- Domain Admins and other highly privileged accounts should not be used as SPN accounts
+
+### Detection
+
+- event ID 4769: A Kerberos service ticket was requested
+- event ID 4770: A Kerberos service ticket was renewed
+- Note that 10-20 Kerberos TGS requests for a given account can be considered
+ normal in a given environment.
+
+
+## ACL Abuse
+
+### Remediation
+
+- Auditing for and removing dangerous ACLs
+- Monitor group membership
+- All high-impact groups in the domain should be monitored to alert IT staff of
+ changes that could be indicative of an ACL attack chain.
+- Audit and monitor for ACL changes
+
+### Detection
+
+- event ID 5136: A directory service object was modified 
