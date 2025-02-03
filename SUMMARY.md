@@ -42,8 +42,7 @@
 
 * [🕸️ Web Penetration Testing](web-app-penetration-testing/README.md)
 
-  * [🔍 Reconnaissance](web-app-penetration-testing/reconnaissance/README.md)
-    * [Introduction](web-app-penetration-testing/recon/reconnaissance.md)
+  * [🔍 Reconnaissance](web-app-penetration-testing/recon/reconnaissance.md)
     * [Passive Recon](web-app-penetration-testing/recon/passive-reconnaissance.md)
     * [Active Recon](web-app-penetration-testing/recon/active-reconnaissance.md)
 

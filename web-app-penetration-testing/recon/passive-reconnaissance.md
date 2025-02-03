@@ -64,8 +64,8 @@ dig +short <domain>
 
 ```shell
 # Following sites can be used to get subdomain info
-https://crt.sh/
-https://search.censys.io/
+[cert.sh](https://crt.sh/)
+[censys.io](https://search.censys.io/)
 
 # crt.sh provides API which can also be used
 curl -s "https://crt.sh/?q=<DOMAIN>&output=json" | jq -r '.[]
@@ -100,3 +100,8 @@ site:<DOMAIN> intext:"TEXT_TO_FIND"
 - The Wayback Machine is a digital archive of the World Wide Web and other information on the Internet. It has been archiving websites since 1996.
 - We can use it for: Tracking Changes and Identifying Patterns, Uncovering Hidden Assets and Vulnerabilities, Gathering Intelligence
 - URL: [WayBack Machine](https://web.archive.org/)
+
+## Other Resources
+
+- [Domain Glass](https://domain.glass/)
+- [GrayHatWarfare](https://buckets.grayhatwarfare.com/)

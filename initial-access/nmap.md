@@ -5,7 +5,7 @@
 sudo nmap -sn $TARGET_NET -oA live_hosts --stats-every 5s | grep 'for' | cut -d" " -f5
 ```
 
-### Scan Hosts from a List:
+### Scan Hosts from a List
 ```shell
 sudo nmap -sn -iL $HOSTS_LIST -oA tnet | grep 'for' | cut -d" " -f5
 ```
