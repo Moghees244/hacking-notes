@@ -70,3 +70,16 @@
 ### Detection
 
 - event ID 5136: A directory service object was modified 
+
+## SUDO Rights
+
+### Remediation
+
+- Always specify the absolute path to any binaries listed in the sudoers file entry. 
+Otherwise, an attacker may be able to leverage PATH abuse (which we will see in the 
+next section) to create a malicious binary that will be executed when the command runs 
+(i.e., if the sudoers entry specifies cat instead of /bin/cat this could likely be abused).
+- Grant sudo rights sparingly and based on the principle of least privilege. Does the user 
+need full sudo rights? Can they still perform their job with one or two entries in the 
+sudoers file? Limiting the privileged command that a user can run will greatly reduce 
+the likelihood of successful privilege escalation.
