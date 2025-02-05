@@ -17,6 +17,7 @@
 
  # AppLocker
  Get-AppLockerPolicy -Effective | select -ExpandProperty RuleCollections
+ Get-AppLockerPolicy -Local | Test-AppLockerPolicy -path C:\Windows\System32\cmd.exe -User Everyone
 
  # PowerShell Constrained Language Mode, if output is ConstrainedLanguage
  $ExecutionContext.SessionState.LanguageMode
