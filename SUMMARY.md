@@ -14,28 +14,28 @@
 * [🪟 Active Directory Penetration Testing](active-directory-penetration-testing/README.md)
 
   * [🚪 Breaching the Domain](active-directory-penetration-testing/breaching-the-domain/README.md)
-    * [LLMNR Poisoning](active-directory-penetration-testing/attacks/llmnr-poisoning.md)
-    * [Password Spraying](active-directory-penetration-testing/attacks/password-spraying.md)
+    * [LLMNR Poisoning](active-directory-penetration-testing/breaching-the-domain/llmnr-poisoning.md)
+    * [Password Spraying](active-directory-penetration-testing/breaching-the-domain/password-spraying.md)
 
   * [🔐 Evasion Techniques](active-directory-penetration-testing/evasion-techniques/README.md)
-    * [Enumeration](active-directory-penetration-testing/security-controls/security-controls-enumeration.md)
-    * [Bypasses](active-directory-penetration-testing/security-controls/security-controls-bypass.md)
+    * [Enumeration](active-directory-penetration-testing/evasion-techniques/security-controls-enumeration.md)
+    * [Bypasses](active-directory-penetration-testing/evasion-techniques/security-controls-bypass.md)
 
   * [🌐 Domain Enumeration](active-directory-penetration-testing/domain-enumeration/README.md)
-    * [From Linux](active-directory-penetration-testing/enumeration/domain-enumeration-linux.md)
-    * [From Windows](active-directory-penetration-testing/enumeration/domain-enumeration-windows.md)
-    * [Living Off the Land](active-directory-penetration-testing/enumeration/living-off-the-land.md)
+    * [From Linux](active-directory-penetration-testing/domain-enumeration/domain-enumeration-linux.md)
+    * [From Windows](active-directory-penetration-testing/domain-enumeration/domain-enumeration-windows.md)
+    * [Living Off the Land](active-directory-penetration-testing/domain-enumeration/living-off-the-land.md)
 
   * [🎭 Kerberos Attacks](active-directory-penetration-testing/kerberos-attacks/README.md)
-    * [Kerberoasting](active-directory-penetration-testing/attacks/Kerberoasting.md)
+    * [Kerberoasting](active-directory-penetration-testing/kerberos-attacks/Kerberoasting.md)
 
   * [📜 ACL & Trust Exploitation](active-directory-penetration-testing/acl-and-trust-exploitation/README.md)
-    * [ACL Abuse](active-directory-penetration-testing/trust-abuse/acl-abuse.md)
-    * [Cross-Domain Trusts Abuse](active-directory-penetration-testing/trust-abuse/domain-trust-abuse.md)
-    * [Cross-Forest Trusts Abuse](active-directory-penetration-testing/trust-abuse/cross-forest-trust-abuse.md)
+    * [ACL Abuse](active-directory-penetration-testing/acl-and-trust-exploitation/acl-abuse.md)
+    * [Cross-Domain Trusts Abuse](active-directory-penetration-testing/acl-and-trust-exploitation/domain-trust-abuse.md)
+    * [Cross-Forest Trusts Abuse](active-directory-penetration-testing/acl-and-trust-exploitation/cross-forest-trust-abuse.md)
 
   * [🛡️ Mitigation & Detection](active-directory-penetration-testing/mitigation-and-detection/README.md)
-    * [Detection Techniques](active-directory-penetration-testing/security-controls/mitigation-and-detection.md)
+    * [Detection Techniques](active-directory-penetration-testing/mitigation-and-detection/mitigation-and-detection.md)
 
   * [⚒️ Hardening Active Directory](active-directory-penetration-testing/hardening-active-directory/README.md)
     * [Practices for Hardening](active-directory-penetration-testing/hardening-active-directory/hardening.md)
