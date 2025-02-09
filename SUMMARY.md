@@ -61,3 +61,9 @@
     * [Remediations](web-app-penetration-testing/remediations/remediations.md)
     
 * [🕷️ Malware Development](malware-dev/README.md)
+
+* [🛠️ Miscellaneous](miscellaneous/README.md)
+  * [Pivoting & Tunneling](miscellaneous/pivoting-and-tunneling.md)
+  * [File Transfer Methods](miscellaneous/file-transfer-methods.md)
+  * [Password Cracking](miscellaneous/password-cracking.md)
+  * [Shells & Payloads](miscellaneous/shells-and-payloads.md)

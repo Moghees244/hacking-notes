@@ -1,3 +1,1 @@
 # 📉 Privilege Escalation
-
-coming soon
