@@ -3,10 +3,12 @@
 * [🚀 Introduction](README.md)
 
 * [🛜 WiFi Penetration Testing](wifi-penetration-testing/README.md)
-  * [Introduction](wifi-penetration-testing/introduction.md)
-  * [WEP Attacks](wifi-penetration-testing/WEP.md)
-  * [WPS Attacks](wifi-penetration-testing/WPS.md)
-  * [WPA Attacks](wifi-penetration-testing/WPA.md)
+  * [IEEE 802.11](wifi-penetration-testing/802.11.md)
+  * [WiFi Interfcaes](wifi-penetration-testing/wifi-interfaces.md)
+  * [WEP](wifi-penetration-testing/WEP.md)
+  * [WPS](wifi-penetration-testing/WPS.md)
+  * [WPA](wifi-penetration-testing/WPA.md)
+  * [WiFi Attacks](wifi-penetration-testing/attacks.md)
 
 * [🔍 Recon & Initial Access](initial-access/README.md)
   * [OSINT](initial-access/osint.md)
