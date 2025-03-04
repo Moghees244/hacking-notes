@@ -2,6 +2,11 @@
 
 * [🚀 Introduction](README.md)
 
+* [🛜 WiFi Penetration Testing](wifi-penetration-testing/README.md)
+  * [Introduction](wifi-penetration-testing/introduction.md)
+  * [WEP Attacks](wifi-penetration-testing/WEP.md)
+  * [WPS Attacks](wifi-penetration-testing/WPS.md)
+
 * [🔍 Recon & Initial Access](initial-access/README.md)
   * [OSINT](initial-access/osint.md)
   * [Scanning using Nmap](initial-access/nmap.md)
