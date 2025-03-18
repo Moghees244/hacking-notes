@@ -14,3 +14,11 @@
 - Input Validation
 - We should ensure that the user querying the database only has minimum permissions.
 - Parameterized Queries (Prepared statements)
+
+
+## Cross Origin Resource Sharing Attacks
+
+- The origin should be properly specified in the `Access-Control-Allow-Origin` header. 
+- Avoid whitelisting `null` origin.
+- Avoid wildcards in internal networks.
+- Web servers should continue to apply protections over sensitive data, such as authentication and session management, in addition to properly configured CORS. 

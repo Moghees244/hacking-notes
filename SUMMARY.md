@@ -59,6 +59,7 @@
     * [Login Bruteforcing](web-app-penetration-testing/attacks/login-bruteforcing.md)
     * [SQL Injection](web-app-penetration-testing/attacks/sql-injection.md)
     * [Cross Site Scripting (XSS)](web-app-penetration-testing/attacks/xss.md)
+    * [Cross Origin Resource Sharing (CORS)](web-app-penetration-testing/attacks/cors.md)
     * [Command Injection](web-app-penetration-testing/attacks/command-injection.md)
     * [File Inclusion](web-app-penetration-testing/attacks/file-inclusion.md)
     * [File Upload Attacks](web-app-penetration-testing/attacks/file-upload.md)
