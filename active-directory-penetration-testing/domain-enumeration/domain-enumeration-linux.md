@@ -82,7 +82,7 @@ to make a unique value used to represent the object.
  python3 windapsearch.py --dc-ip $DC_IP -u username@$DOMAIN -p password -PU
 
  # gathering domaion information using BloodHound and upload to UI
- bloodhound-python -u 'username' -p 'password' -ns $DC_IP -d $DOMAIN -c all --zip domain.zip
+ bloodhound-python -u 'username' -p 'password' -ns $DC_IP -d $DOMAIN -c all --zip
 
  ```
 

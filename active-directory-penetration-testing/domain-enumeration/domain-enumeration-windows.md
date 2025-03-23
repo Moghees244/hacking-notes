@@ -190,6 +190,8 @@ by analyzing the relationships between objects.
 network but it doesn't need to be joined to the domain as long as creds are provided.
 
  ```shell
+ # Make sure the sharphound version is compatible
+ # with your bloodhound version
  .\SharpHound.exe -c All --zipfilename domain_data
  ```
 
