@@ -65,6 +65,7 @@
     * [File Upload Attacks](web-app-penetration-testing/attacks/file-upload.md)
     * [IDOR](web-app-penetration-testing/attacks/idor.md)
     * [XML External Entity Injection (XXE)](web-app-penetration-testing/attacks/xxe.md)
+    * [OAuth Attacks](web-app-penetration-testing/attacks/oauth.md)
 
   * [⚒️ Remediations](web-app-penetration-testing/remediations/README.md)
     * [Remediations](web-app-penetration-testing/remediations/remediations.md)
