@@ -22,8 +22,7 @@ I am Moghees Ahmad. I'm working as Security Engineer at Tecvity. I have passion 
 
 🔭 **CTFs:** Catch me in the virtual trenches of Capture The Flag challenges. Always up for a friendly competition and collaborative problem-solving. I have also uploaded walkthroughs of some CTFs and labs in a [repository](https://github.com/Moghees244/CTF)
 
-🔧 **Experience:** I worked as Software Engineer in QA/DevOps Team at Siemens Digital Industries Software.
-During that period, I worked on developing CI/CD pipelines and test automation using Selenium.
+🔧 **Experience:** I worked as Software Engineer in QA/DevOps Team at Siemens Digital Industries Software. During that period, I worked on developing CI/CD pipelines and test automation using Selenium.
 
 
 ## Connect With Me
