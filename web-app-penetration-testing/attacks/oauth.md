@@ -83,5 +83,20 @@ Client applications will often use a reputable, battle-hardened OAuth service th
 ### Vulnerabilities in the OAuth service
 
 **Leaking authorization codes and access tokens**
+
+- A request is sent from the client to /auth endpoint containing client_id (client application) and 
+redirect_uri.
+- If the OAuth service doesnot validate redirect_uri properly, the attackers might be able to perform
+CSRF attack and redirect the response containing the code to their own website.
+- The code can then be used to takeover the account.
+
+- Note that sometimes, OAuth service validated redirect_uri through  a whitelist. In this case we can
+try to bypass the whitelist filter by trying different methods like: [bypassing SSRF defences](https://portswigger.net/web-security/ssrf#circumventing-common-ssrf-defenses), [server side parameter pollution](https://portswigger.net/web-security/api-testing/server-side-parameter-pollution) etc.
+
+
 **Flawed scope validation**
+
+
+
+
 **Unverified user registration**
