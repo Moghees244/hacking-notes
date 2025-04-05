@@ -77,3 +77,4 @@
   * [File Transfer Methods](miscellaneous/file-transfer-methods.md)
   * [Password Cracking](miscellaneous/password-cracking.md)
   * [Shells & Payloads](miscellaneous/shells-and-payloads.md)
+  * [Tmux](miscellaneous/tmux.md)
