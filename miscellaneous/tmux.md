@@ -19,11 +19,11 @@ tmux ls
 
 # Reattach to session
 tmux a      # most recent session
-tmux a -t <index or nameof session> 
+tmux a -t <name of session> 
 
 # Kill a session
 tmux kill-session   # most recent session
-tmux kill-session -t <index or nameof session>
+tmux kill-session -t <name of session>
 
 # Kill all sessions
 tmux kill-server
@@ -73,6 +73,9 @@ Ctrl+B + ,
 # Move sequentially between windows
 Ctrl+B + N
 
+# Move between windows
+Ctrl+B + <window index>
+
 # Kill the current window
 Ctrl+B + &
 ```
@@ -100,4 +103,5 @@ Ctrl+B + Alt + 0-5
 
 # Kill the current pane
 Ctrl+B + X
+Ctrl + D
 ```
