@@ -258,6 +258,9 @@ sudo nmap $TARGET_IP -sC -sV -p25
 
 # Open relay testing
 sudo nmap $TARGET_IP -p25 --script smtp-open-relay -v
+
+# Username enumeration
+smtp-user-enum -M VRFY -U <wordlist> -t $TARGET_IP
 ```
 
 ## IMAP/POP3
