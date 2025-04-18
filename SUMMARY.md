@@ -2,10 +2,13 @@
 
 * [🚀 Introduction](README.md)
 
+<!--
 * [🧰 Methodology](methodology/README.md)
   * [External Pentest](methodology/external_pentest.md)
-  * [Internal Pentest](methodology/internal_pentest.md)
+  * [Internal Pentest](methodology/internal_pentest.md) 
+-->
 
+<!--
 * [🛜 WiFi Penetration Testing](wifi-penetration-testing/README.md)
   * [IEEE 802.11](wifi-penetration-testing/802.11.md)
   * [WiFi Interfcaes](wifi-penetration-testing/wifi-interfaces.md)
@@ -13,9 +16,10 @@
   * [WPS](wifi-penetration-testing/WPS.md)
   * [WPA](wifi-penetration-testing/WPA.md)
   * [WiFi Attacks](wifi-penetration-testing/attacks.md)
+-->
 
 * [🔍 Recon & Initial Access](initial-access/README.md)
-  * [OSINT](initial-access/osint.md)
+  <!--* [OSINT](initial-access/osint.md)-->
   * [Scanning using Nmap](initial-access/nmap.md)
   * [Attacking Common Services](initial-access/attacking-services.md)
 
@@ -74,8 +78,9 @@
   * [⚒️ Remediations](web-app-penetration-testing/remediations/README.md)
     * [Remediations](web-app-penetration-testing/remediations/remediations.md)
     
+<!--
 * [🕷️ Malware Development](malware-dev/README.md)
-
+-->
 * [🛠️ Miscellaneous](miscellaneous/README.md)
   * [Pivoting & Tunneling](miscellaneous/pivoting-and-tunneling.md)
   * [File Transfer Methods](miscellaneous/file-transfer-methods.md)
