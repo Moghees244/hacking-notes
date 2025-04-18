@@ -2,6 +2,10 @@
 
 * [🚀 Introduction](README.md)
 
+* [🧰 Methodology](methodology/README.md)
+  * [External Pentest](methodology/external_pentest.md)
+  * [Internal Pentest](methodology/internal_pentest.md)
+
 * [🛜 WiFi Penetration Testing](wifi-penetration-testing/README.md)
   * [IEEE 802.11](wifi-penetration-testing/802.11.md)
   * [WiFi Interfcaes](wifi-penetration-testing/wifi-interfaces.md)

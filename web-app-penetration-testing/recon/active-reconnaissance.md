@@ -53,6 +53,7 @@ dig @<name_server> <target_domain> AXFR
 
 ```shell
 dnsenum --enum $DOMAIN -f <wordlist_file> -r
+dnsenum --dnsserver $SERVER --enum -p 0 -s 0 -o subdomains.txt -f <wordlist> <target_domain>
 ffuf -w <wordlist_file>:FUZZ -u http://FUZZ.<target_domain>
 ```
 

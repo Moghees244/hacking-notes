@@ -50,6 +50,17 @@ curl -k -X PUT -H "Host: <IP>" --basic -u <username>:<password> --data-binary "P
 ```
 
 
+## SSH
+
+```shell
+# Footprinting the service
+./ssh-audit.py $TARGET_IP
+
+# Try changing authentication method
+ssh -v $USERNAME@$TARGET_IP -o PreferredAuthentications=password
+```
+
+
 ## SMB
 
 - Server Message Block, uses TCP.
@@ -107,4 +118,198 @@ nmap --script smb-vuln* -p 139,445 $TARGET_IP
 samrdump.py $DOMAIN/$USER:$PASSWORD@$TARGET_IP
 lookupsid.py guest@$TARGET_IP -no-pass
 netexec smb $TARGET_IP -u guest -p '' --rid-brute
+```
+
+
+## NFS
+
+```shell
+# Footprinting using nmap
+sudo nmap $TARGET_IP -p111,2049 --script nfs* -sV -sC
+
+# List available shares
+showmount -e $TARGET_IP
+
+# Mount NFS share
+mkdir mnt
+sudo mount -t nfs $TARGET_IP:/ ./mnt/ -o nolock
+
+# Unmount share
+sudo umount ./mnt
+```
+
+## DNS
+
+```shell
+# NS Query
+dig ns $WEBSITE @$DNS_SERVER
+
+# All available records
+dig any $WEBSITE @$DNS_SERVER
+
+# Zone transfer
+dig axfr $WEBSITE @$DNS_SERVER
+dig axfr $SUBDOMAIN.$WEBSITE @$DNS_SERVER
+```
+
+> If the administrator used a subnet for the allow-transfer option for testing purposes or as a workaround solution or set it to any, everyone would query the entire zone file at the DNS server. In addition, other zones can be queried, which may even show internal IP addresses and hostnames.
+
+
+## SMTP
+
+```shell
+# Footprinting service
+sudo nmap $TARGET_IP -sC -sV -p25
+
+# Open relay testing
+sudo nmap $TARGET_IP -p25 --script smtp-open-relay -v
+```
+
+## IMAP/POP3
+
+```shell
+# Footprinting
+sudo nmap $TARGET_IP -sV -p110,143,993,995 -sC
+
+# Connecting to IMAP using curl
+curl -k 'imaps://$TARGET_IP' --user user:password -v
+
+# Connecting to TLS encrypted POP3 and IMAP
+openssl s_client -connect $TARGET_IP:pop3s
+openssl s_client -connect $TARGET_IP:imaps
+```
+
+## SNMP
+
+```shell
+# Fingerprinting
+snmpwalk -v2c -c public $TARGET_IP
+onesixtyone -c seclists/Discovery/SNMP/snmp.txt $TARGET_IP
+braa $community_string@$TARGET_IP:.1.3.6.* 
+```
+
+## MySQL
+
+```shell
+# Footprinting
+sudo nmap $TARGET_IP -sV -sC -p3306 --script mysql*
+
+# Connecting to service
+mysql -u user -pPassword -h $TARGET_IP
+
+# Simple commands
+- show databases;
+- show tables;
+- select * from tables;
+```
+
+## MSSQL
+
+```shell
+# Footprinting
+sudo nmap --script ms-sql-info,ms-sql-empty-password,ms-sql-xp-cmdshell,ms-sql-config,ms-sql-ntlm-info,ms-sql-tables,ms-sql-hasdbaccess,ms-sql-dac,ms-sql-dump-hashes --script-args mssql.instance-port=1433,mssql.username=sa,mssql.password=,mssql.instance-name=MSSQLSERVER -sV -p 1433 $TARGET_IP
+
+# Footprinting using MSSQL Ping
+msf6 auxiliary(scanner/mssql/mssql_ping) > set rhosts $TARGET_IP
+
+# Connecting to service
+impacket-mssqlclient $USERNAME@$TARGET_IP
+impacket-mssqlclient $USERNAME@$TARGET_IP -windows-auth
+```
+
+## Oracle TNS
+
+```shell
+# Footprinting
+sudo nmap -p1521 -sV $TARGET_IP --open
+
+# SID Bruteforcing
+sudo nmap -p1521 -sV $TARGET_IP --open --script oracle-sid-brute
+
+# Enumerating the service
+odat.py all -s $TARGET_IP
+
+# If we have creds, login to the service
+sqlplus $USER/$PASSWORD@$TARGET_IP/XE
+sqlplus $USER/$PASSWORD@$TARGET_IP/XE as sysdba
+
+# File Upload
+odat.py utlfile -s $TARGET_IP -d XE -U $USERNAME -P $PASSWORD --sysdba --putFile $DESTINATION $SOURCE
+
+# Simple queries
+- select table_name from all_tables;
+- select * from table_name;
+```
+
+## IPMI
+
+```shell
+# Footprinting
+sudo nmap -sU --script ipmi-version -p 623 $TARGET_IP
+
+# MSF module
+msf6 > use auxiliary/scanner/ipmi/ipmi_version 
+
+# RAKP remote SHA1 password hash retrieval
+msf6 > use auxiliary/scanner/ipmi/ipmi_dumphashes 
+```
+
+## Rsync - Linux
+
+```shell
+# Footprinting
+sudo nmap -sV -p 873 $TARGET_IP
+
+# Checking accessible shares
+nc -nv $TARGET_IP 873
+
+# Enumerating open shares
+rsync -av --list-only rsync://$TARGET_IP/$SHARENAME
+```
+
+## R-Services - Linux
+
+```shell
+# Footprinting
+sudo nmap -sV -p 512,513,514 10.0.17.2
+
+# Login using rlogin
+rlogin $TARGET_IP -l $USERNAME
+# Once logged in, abuse rwho to list interactive sessions
+# and rusers to get authenticated users
+rwho
+rusers -al $TARGET_IP
+```
+
+## RDP - Windows
+
+```shell
+# Footprinting
+nmap -sV -sC $TARGET_IP -p3389 --script rdp*
+# Avoiding detection while footprinting
+nmap -sV -sC $TARGET_IP -p3389 --packet-trace --disable-arp-ping -n
+
+# Checking RDP security
+# git clone https://github.com/CiscoCXSecurity/rdp-sec-check.git && cd rdp-sec-check
+./rdp-sec-check.pl $TARGET_IP
+```
+
+## WinRM - Windows
+
+```shell
+# Footprinting
+nmap -sV -sC $TARGET_IP -p5985,5986 --disable-arp-ping -n
+
+# Connect to the service
+evil-winrm -i $TARGET_IP -u $USERNAME -p $PASSWORD
+```
+
+## WMI - Windows
+
+```shell
+# Footprinting
+nmap -sV -sC $TARGET_IP -p135 --disable-arp-ping -n
+
+# Connect to the service
+impacket-wmiexec $USERNAME:$PASSWORD@$TARGET_IP
 ```
