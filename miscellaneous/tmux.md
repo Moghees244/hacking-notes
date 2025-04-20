@@ -105,3 +105,26 @@ Ctrl+B + Alt + 0-5
 Ctrl+B + X
 Ctrl + D
 ```
+
+### My Tmux Configuration
+
+```shell
+# Change bottom bar color
+set -g status-bg green
+# enable mouse usage in tmux
+set -g mouse on
+# Sync tmux and system clipboard
+bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "xclip -selection clipboard -in"
+# get some vim features
+set-window-option -g mode-keys vi
+# Open new window in the same directory as the current pane
+bind c new-window -c "#{pane_current_path}"
+# Horizontal split in current directory
+bind '"' split-window -v -c "#{pane_current_path}"
+# Vertical split in current directory
+bind % split-window -h -c "#{pane_current_path}"
+# Increase scrollback limit
+set-option -g history-limit 1000
+# Tmux logging plugin
+set -g @plugin 'tmux-plugins/tmux-logging'
+```
