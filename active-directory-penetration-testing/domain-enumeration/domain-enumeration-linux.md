@@ -73,6 +73,8 @@ to make a unique value used to represent the object.
  wmiexec.py $DOMAIN/username:'password'@$DC_IP
  ```
 
+> SMBEXEC.py is caught by windows defender easily.
+
 - Automating search using `Windapsearch ` and `Bloodhound`:
 
  ```shell
@@ -87,3 +89,4 @@ to make a unique value used to represent the object.
  ```
 
 - A handy cheatsheet: https://wadcoms.github.io/
+- Also check for vulnerabilities like: No Pac, PrintNightmare, PetitPotam

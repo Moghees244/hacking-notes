@@ -446,6 +446,19 @@ EXECUTE('select @@servername, @@version, system_user, is_srvrolemember(''sysadmi
 GO
 ```
 
+- Enumerating SQL server admins in domain:
+
+```shell
+# Bloodhound query
+MATCH p1=shortestPath((u1:User)-[r1:MemberOf*1..]->(g1:Group)) MATCH p2=(u1)-[:SQLAdmin*1..]->(c:Computer) RETURN p2
+
+# Finding and running commands on sql server
+Import-Module .\PowerUpSQL.ps1
+Get-SQLInstanceDomain
+
+Get-SQLQuery -Verbose -Instance "$TARGET_IP,1433" -username "$DOMAIN\$USER" -password $PASSWORD -query $QUERY
+```
+
 ## Oracle TNS
 
 ```shell

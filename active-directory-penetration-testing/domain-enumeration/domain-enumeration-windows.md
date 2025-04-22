@@ -212,3 +212,67 @@ It is better to segement it from rest of the network.
 
 - Sometimes users are provided local admin roles for some specific task but it was not
 revoked. YOu will sometimes also find excessive local admin rights.
+
+> [Misconfiguration Module HTB](https://academy.hackthebox.com/module/143/section/1276)
+
+## Exchange Groups
+
+- The group `Exchange Windows Permissions` is not listed as a protected group, but members are granted the ability to write a DACL to the domain object. This can be leveraged to give a user DCSync privileges.
+
+- The Exchange group `Organization Management` is another extremely powerful group (effectively the "Domain Admins" of Exchange) and can access the mailboxes of all domain users. This group also has full control of the OU called Microsoft Exchange Security Groups, which contains the group Exchange Windows Permissions.
+
+
+## Miscellaneous Misconfigurations
+
+- Finding Passwords in the Description Field using Get-Domain User
+
+```shell
+Get-DomainUser * | Select-Object samaccountname,description |Where-Object {$_.Description -ne $null}
+```
+
+- Domain accounts with the `passwd_notreqd` field set in the userAccountControl attribute are not subject to the current password policy length. They could have a shorter password or no password at all (if empty passwords are allowed in the domain). 
+
+```shell
+Get-DomainUser -UACFilter PASSWD_NOTREQD | Select-Object samaccountname,useraccountcontrol
+```
+
+- Credentials in SMB Shares and SYSVOL Scripts
+
+- Group Policy Preferences (GPP) Passwords
+
+```shell
+crackmapexec smb $TARGET_IP -u $USER -p $PASSWORD -M gpp_autologin
+
+# They can also be decrypted
+gpp-decrypt $ENCRYPTED_PASSWORD
+```
+
+- Group Policy Object (GPO) Abuse
+```shell
+# Enumerating GPOs
+Get-GPO -All | Select DisplayName
+
+# Enumerating domain users GPOs rights
+$sid=Convert-NameToSid "Domain Users"
+Get-DomainGPO | Get-ObjectAcl | ?{$_.SecurityIdentifier -eq $sid}
+
+# Converting GPO GUID to Name
+Get-GPO -Guid $GUID
+```
+
+> Use automated tools like group3r, ADRecon, PingCastle, SharpGPOAbuse
+
+- The `PrivExchange attack` results from a flaw in the Exchange Server PushSubscription feature, which allows any domain user with a mailbox to force the Exchange server to authenticate to any host provided by the client over HTTP. 
+
+- Printer bug:
+
+```shell
+Import-Module .\SecurityAssessment.ps1
+Get-SpoolStatus -ComputerName $COMPUTER_FQDN
+```
+
+- MS14-068 was a flaw in the Kerberos protocol, which could be leveraged along with standard domain user credentials to elevate privileges to Domain Admin. [Tool](https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS14-068/pykek)
+
+- Sniffing LDAP Credentials, the application has a test connection function that we can use to gather credentials by changing the LDAP IP address to that of our attack host and setting up a netcat listener on LDAP port 389. When the device attempts to test the LDAP connection, it will send the credentials to our machine, often in cleartext.
+
+- Enumerate DNS records and find hidden records. [Tool](https://github.com/dirkjanm/adidnsdump)
