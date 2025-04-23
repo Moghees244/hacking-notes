@@ -276,3 +276,19 @@ Get-SpoolStatus -ComputerName $COMPUTER_FQDN
 - Sniffing LDAP Credentials, the application has a test connection function that we can use to gather credentials by changing the LDAP IP address to that of our attack host and setting up a netcat listener on LDAP port 389. When the device attempts to test the LDAP connection, it will send the credentials to our machine, often in cleartext.
 
 - Enumerate DNS records and find hidden records. [Tool](https://github.com/dirkjanm/adidnsdump)
+
+
+## Automated Scanning
+
+- We can create an AD Snapshot with `Active Directory Explorer` tool.
+
+```shell
+# https://github.com/adrecon/ADRecon
+.\ADRecon.ps1
+
+# group3r for group policies
+group3r.exe -f <filepath-name.log> 
+
+# PingCastle for full domain audit
+PingCastle.exe --healthcheck --server $DC_IP --filedir reports/ --zipfile output.zip
+```
