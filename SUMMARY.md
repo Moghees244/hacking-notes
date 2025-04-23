@@ -3,12 +3,6 @@
 * [🚀 Introduction](README.md)
 
 <!--
-* [🧰 Methodology](methodology/README.md)
-  * [External Pentest](methodology/external_pentest.md)
-  * [Internal Pentest](methodology/internal_pentest.md) 
--->
-
-<!--
 * [🛜 WiFi Penetration Testing](wifi-penetration-testing/README.md)
   * [IEEE 802.11](wifi-penetration-testing/802.11.md)
   * [WiFi Interfcaes](wifi-penetration-testing/wifi-interfaces.md)
@@ -50,11 +44,9 @@
     * [Cross-Domain Trusts Abuse](active-directory-penetration-testing/acl-and-trust-exploitation/domain-trust-abuse.md)
     * [Cross-Forest Trusts Abuse](active-directory-penetration-testing/acl-and-trust-exploitation/cross-forest-trust-abuse.md)
 
-  * [🛡️ Mitigation & Detection](active-directory-penetration-testing/mitigation-and-detection/README.md)
-    * [Detection Techniques](active-directory-penetration-testing/mitigation-and-detection/mitigation-and-detection.md)
+  * [🛡️ Mitigation & Detection](active-directory-penetration-testing/mitigation-and-detection/mitigation-and-detection.md)
 
-  * [⚒️ Hardening Active Directory](active-directory-penetration-testing/hardening-active-directory/README.md)
-    * [Practices for Hardening](active-directory-penetration-testing/hardening-active-directory/hardening.md)
+  * [⚒️ Hardening Active Directory](active-directory-penetration-testing/mitigation-and-detection/hardening.md)
 
 * [🕸️ Web Penetration Testing](web-app-penetration-testing/README.md)
 
@@ -75,12 +67,16 @@
     * [XML External Entity Injection (XXE)](web-app-penetration-testing/attacks/xxe.md)
     * [OAuth Attacks](web-app-penetration-testing/attacks/oauth.md)
 
-  * [⚒️ Remediations](web-app-penetration-testing/remediations/README.md)
-    * [Remediations](web-app-penetration-testing/remediations/remediations.md)
+  * [⚒️ Remediations](web-app-penetration-testing/attacks/remediations.md)
     
 <!--
 * [🕷️ Malware Development](malware-dev/README.md)
 -->
+
+* [🧰 Methodology](methodology/README.md)
+  * [External Pentest](methodology/external_pentest.md)
+  * [Internal Pentest](methodology/internal_pentest.md) 
+
 * [🛠️ Miscellaneous](miscellaneous/README.md)
   * [Pivoting & Tunneling](miscellaneous/pivoting-and-tunneling.md)
   * [File Transfer Methods](miscellaneous/file-transfer-methods.md)

@@ -1,2 +1,0 @@
-# ⚒️ Hardening Active Directory
-
