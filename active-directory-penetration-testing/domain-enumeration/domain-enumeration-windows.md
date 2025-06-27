@@ -262,6 +262,15 @@ Get-GPO -Guid $GUID
 
 > Use automated tools like group3r, ADRecon, PingCastle, SharpGPOAbuse
 
+- Check Deleted Objects in AD:
+
+```shell
+Import-Module ActiveDirectory
+Get-ADObject -Filter 'isDeleted -eq $true' -IncludeDeletedObjects
+Restore-ADObject -Identity <object_gid>
+Enable-ADAccount -Identity <object_name>
+```
+
 - The `PrivExchange attack` results from a flaw in the Exchange Server PushSubscription feature, which allows any domain user with a mailbox to force the Exchange server to authenticate to any host provided by the client over HTTP. 
 
 - Printer bug:
