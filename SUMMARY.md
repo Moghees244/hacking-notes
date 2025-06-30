@@ -73,9 +73,9 @@
 * [🕷️ Malware Development](malware-dev/README.md)
 -->
 
-* [🛠️ Cloud Pentesting](Cloud Pentesting/README.md)
-  * [GCP](Cloud Pentesting/GCP/README.md)
-    * [Foundations](Cloud Pentesting/GCP/foundations.md)
+* [🛠️ Cloud Pentesting](cloud-pentesting/README.md)
+  * [GCP](cloud-pentesting/gcp/README.md)
+    * [Foundations](cloud-pentesting/gcp/foundations.md)
 
 * [🧰 Methodology](methodology/README.md)
   * [External Pentest](methodology/external_pentest.md)
