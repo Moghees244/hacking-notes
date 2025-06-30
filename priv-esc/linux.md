@@ -1,5 +1,7 @@
 # Linux Privilege Escalation
 
+Below are the methods to escalate privileges in linux systems:
+
 ## Environment Enumeration
 
 ```shell

