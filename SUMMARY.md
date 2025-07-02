@@ -2,6 +2,10 @@
 
 * [🚀 Introduction](README.md)
 
+* [🌱 Fundamentals](fundamentals/README.md)
+  * [GCP](fundamentals/gcp/README.md)
+    * [Networking](fundamentals/gcp/Networking.md)
+
 <!--
 * [🛜 WiFi Penetration Testing](wifi-penetration-testing/README.md)
   * [IEEE 802.11](wifi-penetration-testing/802.11.md)
@@ -73,9 +77,10 @@
 * [🕷️ Malware Development](malware-dev/README.md)
 -->
 
-* [🛠️ Cloud Pentesting](cloud-pentesting/README.md)
-  * [GCP](cloud-pentesting/gcp/README.md)
-    * [Foundations](cloud-pentesting/gcp/foundations.md)
+* [☁️ Cloud Pentesting](cloud-pentesting/README.md)
+  * [GCP](cloud-pentesting/gcp.md)
+  * [AWS](cloud-pentesting/aws.md)
+  * [Azure](cloud-pentesting/azure.md)
 
 * [🧰 Methodology](methodology/README.md)
   * [External Pentest](methodology/external_pentest.md)
