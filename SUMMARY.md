@@ -2,11 +2,11 @@
 
 * [🚀 Introduction](README.md)
 
+<!--
 * [🌱 Fundamentals](fundamentals/README.md)
   * [GCP](fundamentals/gcp/README.md)
     * [Networking](fundamentals/gcp/Networking.md)
 
-<!--
 * [🛜 WiFi Penetration Testing](wifi-penetration-testing/README.md)
   * [IEEE 802.11](wifi-penetration-testing/802.11.md)
   * [WiFi Interfcaes](wifi-penetration-testing/wifi-interfaces.md)
