@@ -12,6 +12,9 @@ sudo nmap -sn -iL $HOSTS_LIST -oA tnet | grep 'for' | cut -d" " -f5
 
 ### Scan Types
 ```shell
+# IPv6 Scan
+nmap -6 $TARGET_IPv6
+
 # Full TCP Connect Scan (3-Way Handshake)
 sudo nmap -sT $TARGET_IP
 # Stealth SYN Scan
