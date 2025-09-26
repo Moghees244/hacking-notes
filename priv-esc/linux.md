@@ -244,7 +244,7 @@ level privileges.
 # Verify disk access
 ls -l /dev/sda1
 # Launch debugfs
-sudo debugfs /dev/sda1
+debugfs /dev/sda1
 # Read sensitive files
 debugfs: cat /etc/shadow
 ```
