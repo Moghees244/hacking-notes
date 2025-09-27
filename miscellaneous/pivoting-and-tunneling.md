@@ -64,3 +64,5 @@ ligolo > tunnel_start --tun ligolo1
 # Add new subnet to ligolo routes
 sudo ip route add <subnet> dev ligolo1
 ```
+
+https://olivierkonate.medium.com/pivoting-made-easy-with-ligolo-ng-17a4a8a539df

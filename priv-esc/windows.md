@@ -82,8 +82,9 @@ an application, and more.
 - Privileges are different from access rights, which a system uses to grant or deny access to securable objects.
 
 
-### SeImpersonate and SeAssignPrimaryToken
+### SeImpersonate OR SeAssignPrimaryToken
 
+- You must have any one or both of these privs: `SeAssignPrimaryToken` or `SeImpersonate`
 - In Windows, every process has a token that has information about the account that is running it.
 - These tokens are not considered secure resources, as they are just locations within memory that
 could be brute-forced by users that cannot read memory.
