@@ -93,3 +93,4 @@
   * [Password Cracking](miscellaneous/password-cracking.md)
   * [Shells & Payloads](miscellaneous/shells-and-payloads.md)
   * [Tmux](miscellaneous/tmux.md)
+  * [Burp Certs in Android](miscellaneous/android_burp.md)
