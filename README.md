@@ -14,7 +14,7 @@ layout:
 
 # 🚀 Introduction
 
-I am Moghees Ahmad. I'm working as Security Engineer at Tecvity. I have passion for Cybersecurity specifically in Red Teaming and Pentesting. As I embark on my journey, I'm actively pursuing cybersecurity education, I'm enrolled in courses and challenges on platforms like HackTheBox and Portswigger Academy.
+I am Moghees Ahmad. I'm working as Security Engineer at Bank. I have passion for Cybersecurity specifically in Red Teaming and Pentesting. As I embark on my journey, I'm actively pursuing cybersecurity education, I'm enrolled in courses and challenges on platforms like HackTheBox and Portswigger Academy.
 
 ## Current Activities
 

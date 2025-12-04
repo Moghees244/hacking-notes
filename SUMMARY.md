@@ -20,6 +20,7 @@
   <!--* [OSINT](initial-access/osint.md)-->
   * [Scanning using Nmap](initial-access/nmap.md)
   * [Attacking Common Services](initial-access/attacking-services.md)
+  * [Phishing](initial-access/phishing.md)
 
 * [📉 Privilege Escalation](priv-esc/README.md)
   * [Linux](priv-esc/linux.md)
