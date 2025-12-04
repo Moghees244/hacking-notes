@@ -104,7 +104,7 @@
   * [Lateral Movement](crto/lm.md)
   * [Pivoting](crto/piv.md)
   * [Kerberos](crto/kerb.md)
-  * [MSSQl](crto/sql.md)
+  * [MSSQL](crto/sql.md)
   * [Domain Persistence](crto/dp.md)
   * [Cross Forest Attacks](crto/cf.md)
   * [Defense Evasion](crto/evasion.md)
