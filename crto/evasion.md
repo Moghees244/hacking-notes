@@ -4,7 +4,7 @@
 
 ```powershell
 # Defender Status
-(Get-MpPreference).DisableRealtimeMonitoring
+(Get-MpComputerStatus).RealTimeProtectionEnabled
 
 # Language Mode
 $ExecutionContext.SessionState.LanguageMode
