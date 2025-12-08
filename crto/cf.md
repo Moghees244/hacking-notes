@@ -6,10 +6,12 @@
 beacon> ldapsearch (samAccountType=805306370) --attributes samAccountName
 ```
 
-> ```0 is TRUST_DIRECTION_DISABLED.
+```txt
+0 is TRUST_DIRECTION_DISABLED.
 1 is TRUST_DIRECTION_INBOUND.
 2 is TRUST_DIRECTION_OUTBOUND.
-3 is TRUST_DIRECTION_BIDIRECTIONAL.```
+3 is TRUST_DIRECTION_BIDIRECTIONAL.
+```
 
 
 ## Parent/Child Trusts
