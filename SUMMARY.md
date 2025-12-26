@@ -70,6 +70,7 @@
     * [File Inclusion](web-app-penetration-testing/attacks/file-inclusion.md)
     * [File Upload Attacks](web-app-penetration-testing/attacks/file-upload.md)
     * [IDOR](web-app-penetration-testing/attacks/idor.md)
+    * [Parameter Pollution](web-app-penetration-testing/attacks/param-pollution.md)
     * [XML External Entity Injection (XXE)](web-app-penetration-testing/attacks/xxe.md)
     * [OAuth Attacks](web-app-penetration-testing/attacks/oauth.md)
 
