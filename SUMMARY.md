@@ -61,6 +61,7 @@
 
   * [🔴 Attacks](web-app-penetration-testing/attacks/README.md)
     * [API Attacks](web-app-penetration-testing/attacks/api.md)
+    * [Information Disclosure](web-app-penetration-testing/attacks/info-disclosure.md)
     * [HTTP Verb Tampering](web-app-penetration-testing/attacks/http-verb-tampering.md)
     * [Login Bruteforcing](web-app-penetration-testing/attacks/login-bruteforcing.md)
     * [SQL Injection](web-app-penetration-testing/attacks/sql-injection.md)
