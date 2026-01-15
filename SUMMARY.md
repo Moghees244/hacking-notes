@@ -76,7 +76,25 @@
     * [OAuth Attacks](web-app-penetration-testing/attacks/oauth.md)
 
   * [⚒️ Remediations](web-app-penetration-testing/attacks/remediations.md)
-    
+
+
+* [🤖 Android Penetration Testing](android-pentesting/README.md)
+  * [Basics](android-pentesting/basics.md)
+  * [Setup](android-pentesting/setup.md)
+  * [Static Analysis](android-pentesting/static-analysis.md)
+  * [Dynamic Analysis](android-pentesting/dynamic-analysis/README.md)
+    * [Enumerating Local Storage](android-pentesting/dynamic-analysis/local_storage.md)
+    * [Insecure Logging](android-pentesting/dynamic-analysis/insecure-logging.md)
+    * [Root Detection Bypass](android-pentesting/dynamic-analysis/root-bypass.md)
+    * [SSL Pinning Bypass](android-pentesting/dynamic-analysis/ssl-pinning-bypass.md)
+    * [Biometric Bypass](android-pentesting/dynamic-analysis/biometric-bypass.md)
+    * [Authentication Bypass](android-pentesting/dynamic-analysis/auth-bypass.mdd)
+    * [Intent Exploitation](android-pentesting/dynamic-analysis/intent.md)
+    * [WebViews Exploiatation](android-pentesting/dynamic-analysis/webviews.md)
+    * [Deep Links Exploitation](android-pentesting/dynamic-analysis/deeplinks.md)
+    * [Hooking Methods](android-pentesting/dynamic-analysis/hooking-methods.md)
+  * [⚒️ Remediations](android-pentesting/remediations.md)
+
 <!--
 * [🕷️ Malware Development](malware-dev/README.md)
 -->
