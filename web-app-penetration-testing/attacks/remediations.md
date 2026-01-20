@@ -22,3 +22,17 @@
 - Avoid whitelisting `null` origin.
 - Avoid wildcards in internal networks.
 - Web servers should continue to apply protections over sensitive data, such as authentication and session management, in addition to properly configured CORS. 
+
+
+## XPath Injection
+
+- Proper (manual) sanitization is the only universal method of preventing XPath injection vulnerabilities.
+- The simplest and most secure way is to implement a whitelist that only allows alphanumeric characters in the user input inserted into the XPath query.
+- Additionally, verifying the expected data type and format when performing sanitization is crucial. If the web application expects an integer, it must verify that the user input consists of only digits.
+
+## LDAP Injection
+
+- Remove parenthesis, asterisk, backslash and null byte from the user input.
+- Use pre defined ldap escape functions is available.
+- Give the account used to bind to the DS the least privileges required to perform the search operation for our specific task.
+- When using LDAP for authentication, it is more secure to perform a bind operation with the credentials provided by the user, rather than performing a search operation.

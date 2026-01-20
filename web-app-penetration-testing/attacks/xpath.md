@@ -155,3 +155,11 @@ We can exploit Node Selection to fetch data.
 ```
 
 >  If the XML document is large, this payload can quickly cause a significant load on the web server, potentially resulting in Denial-of-Service (DoS).
+
+## Automation
+
+```shell
+# Setup tool
+pip3 install cython
+pip3 install xcat
+```
