@@ -36,3 +36,12 @@
 - Use pre defined ldap escape functions is available.
 - Give the account used to bind to the DS the least privileges required to perform the search operation for our specific task.
 - When using LDAP for authentication, it is more secure to perform a bind operation with the credentials provided by the user, rather than performing a search operation.
+
+## PDF Generation Exploits
+
+- Many PDF generation libraries default to a configuration that allows access to external resources. Setting this option to false effectively prevents SSRF vulnerabilities. In the DomPDf library, this option is called enable_remote.
+- The DomPDF library has a configuration option called isPhpEnabled that enables PHP code execution; this option should be disabled because it's a security risk.
+- HTML-entity encoding the user input.
+- JavaScript code should not be executed under any circumstances.
+- Access to local files should be disallowed.
+- Access to external resources should be disallowed or limited if it is required.
