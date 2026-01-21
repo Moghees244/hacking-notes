@@ -45,3 +45,10 @@
 - JavaScript code should not be executed under any circumstances.
 - Access to local files should be disallowed.
 - Access to external resources should be disallowed or limited if it is required.
+
+## NoSQL Injection
+
+- If the web app framework is weakly typed, Cast the user input to strings to avoid anything arrays being passed.
+- Implement input validation.
+- According to the developers of MongoDB, you should only use $where if it is impossible to express a query any other way.
+- If you don't use any queries which evaluate JavaScript in your project, then a good idea would be to completely disable server-side JavaScript evaluation, which is enabled by default.
