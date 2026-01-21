@@ -67,6 +67,7 @@
     * [SQL Injection](web-app-penetration-testing/attacks/sql-injection.md)
     * [XPath Injection](web-app-penetration-testing/attacks/xpath.md)
     * [LDAP Injection](web-app-penetration-testing/attacks/ldap.md)
+    * [No SQL Injection](web-app-penetration-testing/attacks/no-sql-injection.md)
     * [Cross Site Scripting (XSS)](web-app-penetration-testing/attacks/xss.md)
     * [PDF Generation Vulnerablilities](web-app-penetration-testing/attacks/pdf-injection.md)
     * [Cross Origin Resource Sharing (CORS)](web-app-penetration-testing/attacks/cors.md)
