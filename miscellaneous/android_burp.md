@@ -21,3 +21,22 @@ adb shell
 
 adb reboot
 ```
+
+
+
+## Flutter SSL Pinning Bypass
+
+
+```shell
+# Install reflutter and patch the APK
+reflutter abc.apk
+
+# Sign the apk
+java -jar uber-apk-signer.jar — allowResign -a release.RE.apk
+
+# Burp configuration
+Turn on 'Support invisible proxying' in burp
+
+# Run the following script using frida
+https://github.com/hackcatml/frida-flutterproxy/blob/main/script.js
+```
