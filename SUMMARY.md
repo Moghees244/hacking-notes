@@ -64,6 +64,8 @@
     * [Information Disclosure](web-app-penetration-testing/attacks/info-disclosure.md)
     * [HTTP Verb Tampering](web-app-penetration-testing/attacks/http-verb-tampering.md)
     * [Login Bruteforcing](web-app-penetration-testing/attacks/login-bruteforcing.md)
+    * [OAuth Attacks](web-app-penetration-testing/attacks/oauth.md)
+    * [JWT Attacks](web-app-penetration-testing/attacks/jwt.md)
     * [SQL Injection](web-app-penetration-testing/attacks/sql-injection.md)
     * [XPath Injection](web-app-penetration-testing/attacks/xpath.md)
     * [LDAP Injection](web-app-penetration-testing/attacks/ldap.md)
@@ -76,7 +78,6 @@
     * [File Upload Attacks](web-app-penetration-testing/attacks/file-upload.md)
     * [Parameter Pollution](web-app-penetration-testing/attacks/param-pollution.md)
     * [XML External Entity Injection (XXE)](web-app-penetration-testing/attacks/xxe.md)
-    * [OAuth Attacks](web-app-penetration-testing/attacks/oauth.md)
 
   * [⚒️ Remediations](web-app-penetration-testing/attacks/remediations.md)
 
