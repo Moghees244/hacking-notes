@@ -23,3 +23,14 @@
 
 > In this case the JWT does not contain a signature, the final period (.) still needs to be present.
 
+### Attacking the Signing Secret
+
+- Brute force the signing secret and modify the token.
+
+```shell
+hashcat -m 16500 jwt.txt /usr/share/wordlists/rockyou.txt
+```
+
+### Algorithm Confusion
+
+- Algorithm confusion is a JWT attack that forces the web application to use a different algorithm to verify the JWT's signature than the one used to create it.
