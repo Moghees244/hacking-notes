@@ -52,3 +52,11 @@
 - Implement input validation.
 - According to the developers of MongoDB, you should only use $where if it is impossible to express a query any other way.
 - If you don't use any queries which evaluate JavaScript in your project, then a good idea would be to completely disable server-side JavaScript evaluation, which is enabled by default.
+
+## JWT Attacks
+
+- Plan and document the JWT configuration that the web application uses. This configuration includes the signature algorithm as well as which claims are used by the web application.
+- Do not implement custom JWT handling logic. Instead, rely on established libraries to handle JWT operations such as signature generation, signature verification, and claim extraction. Ensure that the library used is up-to-date.
+- Tie the JWT handling logic down to suit the corresponding JWT configuration. For instance, reject tokens that are not signed with the expected signature algorithm.
+- If claims such as the jku claim are used, implement a whitelist of allowed hosts before fetching any data from remote origins to prevent SSRF vulnerabilities.
+- Always include an expiration date within the exp claim of the JWT to prevent JWTs from being valid indefinitely.
