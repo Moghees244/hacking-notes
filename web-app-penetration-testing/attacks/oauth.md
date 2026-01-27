@@ -1,11 +1,6 @@
-# OAuth 2.0 Authentication Vulnerabilities
+# OAuth Vulnerabilities
 
-While browsing the web, you've almost certainly come across sites that let you log in using your social media account. The chances are that this feature is built using the popular OAuth 2.0 framework.
-
-OAuth is a commonly used authorization framework that enables websites and web applications to request limited access to a user's account on another application.
-
-Through OAuth, user is able to login to websites without using credentials and also fine-tune the
-information that is exposed to the other websites.
+- OAuth is a standard that enables secure authorization between services and applications. As such, OAuth is commonly used in Single Sign-On (SSO) scenarios, enabling users to log in to a single service to access multiple different services. OAuth achieves this without sharing the user's credentials between services.
 
 
 ## How does OAuth work?
@@ -14,19 +9,19 @@ There are 3 parties involved in OAuth authentication:
 
 - Client application: The website or web application that wants to access the user's data.
 - Resource owner: The user whose data the client application wants to access.
-- OAuth service provider: The website or application that controls the user's data and access to it. 
+- OAuth service provider: The website or application that controls the user's data and access to it.
+- Resource Server: The server hosting the resources the client requests to access
 
+> Note that it is not required for these entities to be physically separate. For instance, the authorization and resource servers may be the same system.
 
-There are numerous different ways that the actual OAuth process can be implemented. These are known as OAuth "flows" or "grant types". 
+- There are numerous different ways that the actual OAuth process can be implemented. These are known as OAuth "flows" or "grant types". 
 
-The grant types involve the following stages:
+- The grant types involve the following stages:
 
-- The client application requests access to a subset of the user's data, specifying which grant type they want to use and what kind of access they want.
-- The user is prompted to log in to the OAuth service and give their consent for the requested access.
-- The client application receives an access token that proves they have permission.
-- The client application uses this access token to make API calls fetching the relevant data from the resource server.
-
-TODO: add more details related to grant types
+    - The client application requests access to a subset of the user's data, specifying which grant type they want to use and what kind of access they want.
+    - The user is prompted to log in to the OAuth service and give their consent for the requested access.
+    - The client application receives an access token that proves they have permission.
+    - The client application uses this access token to make API calls fetching the relevant data from the resource server.
 
 ## Identifying OAuth Authentication
 
@@ -48,12 +43,12 @@ TODO: add more details related to grant types
 
 ## Exploiting OAuth authentication vulnerabilities
 
-Vulnerabilities can arise in the client application's implementation of OAuth as well as in the configuration of the OAuth service itself.
+- Vulnerabilities can arise in the client application's implementation of OAuth as well as in the configuration of the OAuth service itself.
 
 
 ### Vulnerabilities in the OAuth client application
 
-Client applications will often use a reputable, battle-hardened OAuth service that is well protected against widely known exploits. However, their own side of the implementation may be less secure.
+- Client applications will often use a reputable, battle-hardened OAuth service that is well protected against widely known exploits. However, their own side of the implementation may be less secure.
 
 
 **Improper implementation of the implicit grant type**
@@ -92,11 +87,3 @@ CSRF attack and redirect the response containing the code to their own website.
 
 - Note that sometimes, OAuth service validated redirect_uri through  a whitelist. In this case we can
 try to bypass the whitelist filter by trying different methods like: [bypassing SSRF defences](https://portswigger.net/web-security/ssrf#circumventing-common-ssrf-defenses), [server side parameter pollution](https://portswigger.net/web-security/api-testing/server-side-parameter-pollution) etc.
-
-
-**Flawed scope validation**
-
-
-
-
-**Unverified user registration**
