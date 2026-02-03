@@ -100,9 +100,10 @@
     * [Hooking Methods](android-pentesting/dynamic-analysis/hooking-methods.md)
   * [⚒️ Remediations](android-pentesting/remediations.md)
 
-<!--
+
 * [🕷️ Malware Development](malware-dev/README.md)
--->
+  * [Windows Defender Bypass](malware-dev/defender-bypass.md)
+
 
 * [☁️ Cloud Pentesting](cloud-pentesting/README.md)
   * [GCP](cloud-pentesting/gcp.md)
