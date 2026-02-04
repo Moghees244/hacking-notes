@@ -29,4 +29,4 @@
 
 ### Signature Wrapping Attack
 
-- 
+- This discrepancy is achieved by injecting XML elements into the SAML response that do not invalidate the signature but potentially confuse the application, resulting in the application using the injected and unsigned authentication information instead of the signed authentication information.
