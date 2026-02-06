@@ -15,3 +15,9 @@
 
 - We can inject malicious code to get RCE.
 
+
+### HTTP Response Splitting
+
+- HTTP Response Splitting is a serious vulnerability that arises when web servers reflect user input in HTTP headers without proper sanitization.
+- Check if user input is reflected in header without any sanitization.
+- If yes, then use CRLF injection with XSS payload. Make sure to set `Content-Type` header properly so your payload can be executed.
