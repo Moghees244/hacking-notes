@@ -62,33 +62,27 @@
 
   * [🔴 Attacks](web-app-penetration-testing/attacks/README.md)
     * [HTTP Attacks](web-app-penetration-testing/attacks/README.md)
-      * [HTTP Verb Tampering](web-app-penetration-testing/attacks/http-verb-tampering.md)
-      * [CRLF Injection](web-app-penetration-testing/attacks/crlf-injection.md)
-      * [HTTP Request Smuggling](web-app-penetration-testing/attacks/request-smuggling.md)
-
+    * [HTTP Verb Tampering](web-app-penetration-testing/attacks/http-verb-tampering.md)
+    * [CRLF Injection](web-app-penetration-testing/attacks/crlf-injection.md)
+    * [HTTP Request Smuggling](web-app-penetration-testing/attacks/request-smuggling.md)
     * [Information Disclosure](web-app-penetration-testing/attacks/info-disclosure.md)
-    
     * [Authentication Bypass](web-app-penetration-testing/attacks/README.md)
-      * [Login Bruteforcing](web-app-penetration-testing/attacks/login-bruteforcing.md)
-      * [OAuth Attacks](web-app-penetration-testing/attacks/oauth.md)
-      * [SAML Attacks](web-app-penetration-testing/attacks/saml.md)
-      * [JWT Attacks](web-app-penetration-testing/attacks/jwt.md)
-      * [XPath Injection](web-app-penetration-testing/attacks/xpath.md)
-      * [LDAP Injection](web-app-penetration-testing/attacks/ldap.md)
-
+    * [Login Bruteforcing](web-app-penetration-testing/attacks/login-bruteforcing.md)
+    * [OAuth Attacks](web-app-penetration-testing/attacks/oauth.md)
+    * [SAML Attacks](web-app-penetration-testing/attacks/saml.md)
+    * [JWT Attacks](web-app-penetration-testing/attacks/jwt.md)
+    * [XPath Injection](web-app-penetration-testing/attacks/xpath.md)
+    * [LDAP Injection](web-app-penetration-testing/attacks/ldap.md)
     * [SQL Injection](web-app-penetration-testing/attacks/sql-injection.md)
     * [No SQL Injection](web-app-penetration-testing/attacks/no-sql-injection.md)
-
     * [Cross Site Scripting (XSS)](web-app-penetration-testing/attacks/xss.md)
     * [PDF Generation Vulnerablilities](web-app-penetration-testing/attacks/pdf-injection.md)
-
     * [Cross Origin Resource Sharing (CORS)](web-app-penetration-testing/attacks/cors.md)
     * [Command Injection](web-app-penetration-testing/attacks/command-injection.md)
     * [File Inclusion](web-app-penetration-testing/attacks/file-inclusion.md)
     * [File Upload Attacks](web-app-penetration-testing/attacks/file-upload.md)
     * [Parameter Pollution](web-app-penetration-testing/attacks/param-pollution.md)
     * [XML External Entity Injection (XXE)](web-app-penetration-testing/attacks/xxe.md)
-
   * [⚒️ Remediations](web-app-penetration-testing/attacks/remediations.md)
 
 
