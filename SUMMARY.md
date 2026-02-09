@@ -61,7 +61,6 @@
     * [API Attacks](web-app-penetration-testing/recon/api.md)
 
   * [🔴 Attacks](web-app-penetration-testing/attacks/README.md)
-    * [HTTP Attacks](web-app-penetration-testing/attacks/README.md)
     * [HTTP Verb Tampering](web-app-penetration-testing/attacks/http-verb-tampering.md)
     * [CRLF Injection](web-app-penetration-testing/attacks/crlf-injection.md)
     * [HTTP Request Smuggling](web-app-penetration-testing/attacks/request-smuggling.md)
