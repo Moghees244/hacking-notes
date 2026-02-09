@@ -60,3 +60,8 @@
 - Tie the JWT handling logic down to suit the corresponding JWT configuration. For instance, reject tokens that are not signed with the expected signature algorithm.
 - If claims such as the jku claim are used, implement a whitelist of allowed hosts before fetching any data from remote origins to prevent SSRF vulnerabilities.
 - Always include an expiration date within the exp claim of the JWT to prevent JWTs from being valid indefinitely.
+
+## CRLF Injection
+
+- Use logger provided by framework instead of building custom one.
+- URL encode all chars to avoid CRLF injection.
