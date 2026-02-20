@@ -40,6 +40,7 @@
   * [🎭 Kerberos Attacks](active-directory-penetration-testing/kerberos-attacks/README.md)
     * [AS-REPRoasting](active-directory-penetration-testing/kerberos-attacks/asreproasting.md)
     * [Kerberoasting](active-directory-penetration-testing/kerberos-attacks/Kerberoasting.md)
+    * [Triage](active-directory-penetration-testing/kerberos-attacks/kerberos-triage.md)
     * [Unconstrained Delegation](active-directory-penetration-testing/kerberos-attacks/unconstrained-delegation.md)
     * [Constrained Delegation](active-directory-penetration-testing/kerberos-attacks/constrained-delegation.md)
     * [RBCD](active-directory-penetration-testing/kerberos-attacks/rbcd.md)
