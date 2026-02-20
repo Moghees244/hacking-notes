@@ -20,7 +20,7 @@
   <!--* [OSINT](initial-access/osint.md)-->
   * [Scanning using Nmap](initial-access/nmap.md)
   * [Attacking Common Services](initial-access/attacking-services.md)
-  * [Phishing](initial-access/phishing.md)
+  <!--*  [Phishing](initial-access/phishing.md) -->
 
 * [📉 Privilege Escalation](priv-esc/README.md)
   * [Linux](priv-esc/linux.md)
@@ -32,17 +32,18 @@
     * [LLMNR Poisoning](active-directory-penetration-testing/breaching-the-domain/llmnr-poisoning.md)
     * [Password Spraying](active-directory-penetration-testing/breaching-the-domain/password-spraying.md)
 
-  * [🔐 Evasion Techniques](active-directory-penetration-testing/evasion-techniques/README.md)
-    * [Enumeration](active-directory-penetration-testing/evasion-techniques/security-controls-enumeration.md)
-    * [Bypasses](active-directory-penetration-testing/evasion-techniques/security-controls-bypass.md)
-
   * [🌐 Domain Enumeration](active-directory-penetration-testing/domain-enumeration/README.md)
     * [From Linux](active-directory-penetration-testing/domain-enumeration/domain-enumeration-linux.md)
     * [From Windows](active-directory-penetration-testing/domain-enumeration/domain-enumeration-windows.md)
     * [Living Off the Land](active-directory-penetration-testing/domain-enumeration/living-off-the-land.md)
 
   * [🎭 Kerberos Attacks](active-directory-penetration-testing/kerberos-attacks/README.md)
+    * [AS-REPRoasting](active-directory-penetration-testing/kerberos-attacks/asreproasting.md)
     * [Kerberoasting](active-directory-penetration-testing/kerberos-attacks/Kerberoasting.md)
+    * [Unconstrained Delegation](active-directory-penetration-testing/kerberos-attacks/unconstrained-delegation.md)
+    * [Constrained Delegation](active-directory-penetration-testing/kerberos-attacks/constrained-delegation.md)
+    * [RBCD](active-directory-penetration-testing/kerberos-attacks/rbcd.md)
+    * [Ticket Abuse](active-directory-penetration-testing/kerberos-attacks/tickets.md)
 
   * [📜 ACL & Trust Exploitation](active-directory-penetration-testing/acl-and-trust-exploitation/README.md)
     * [ACL Abuse](active-directory-penetration-testing/acl-and-trust-exploitation/acl-abuse.md)
@@ -85,6 +86,7 @@
   * [⚒️ Remediations](web-app-penetration-testing/attacks/remediations.md)
 
 
+<!--
 * [🤖 Android Penetration Testing](android-pentesting/README.md)
   * [Basics](android-pentesting/basics.md)
   * [Setup](android-pentesting/setup.md)
@@ -101,7 +103,7 @@
     * [Deep Links Exploitation](android-pentesting/dynamic-analysis/deeplinks.md)
     * [Hooking Methods](android-pentesting/dynamic-analysis/hooking-methods.md)
   * [⚒️ Remediations](android-pentesting/remediations.md)
-
+-->
 
 * [🕷️ Malware Development](malware-dev/README.md)
   * [Windows Defender Bypass](malware-dev/defender-bypass.md)
@@ -110,12 +112,14 @@
 * [☁️ Cloud Pentesting](cloud-pentesting/README.md)
   * [GCP](cloud-pentesting/gcp.md)
   * [AWS](cloud-pentesting/aws.md)
-  * [Azure](cloud-pentesting/azure.md)
+  <!--* [Azure](cloud-pentesting/azure.md) -->
 
+<!--
 * [🧰 Methodology](methodology/README.md)
   * [External Pentest](methodology/external_pentest.md)
   * [Internal Pentest](methodology/internal_pentest.md) 
   * [Reporting](methodology/reporting.md) 
+-->
 
 * [🛠️ Miscellaneous](miscellaneous/README.md)
   * [Pivoting & Tunneling](miscellaneous/pivoting-and-tunneling.md)
