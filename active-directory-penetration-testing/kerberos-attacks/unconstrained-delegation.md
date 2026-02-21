@@ -1,5 +1,3 @@
-# Unconstrained Delegation
-
 - Unconstrained delegation allows a service to impersonate a user when accessing any other service.
 - This is a very permissive and dangerous privilege, therefore, not any user can grant it.
 - For an account to have an unconstrained delegation, on the Delegation tab of the account, the `Trust this computer for delegation to any service (Kerberos only)` option must be selected.
@@ -131,8 +129,8 @@ secretsdump.py -k -no-pass $DC_FQDN
 - In case of error in krbrelayx
 
 ```shell
-moghees244@htb[/htb]$ sudo apt remove python3-impacket
-moghees244@htb[/htb]$ sudo apt remove impacket-scripts
-moghees244@htb[/htb]$ git clone -q https://github.com/fortra/impacket;cd impacket
-moghees244@htb[/htb]$ sudo python3 -m pip install .
+sudo apt remove python3-impacket
+sudo apt remove impacket-scripts
+git clone -q https://github.com/fortra/impacket;cd impacket
+sudo python3 -m pip install .
 ```
