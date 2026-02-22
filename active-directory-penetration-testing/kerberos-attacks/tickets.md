@@ -1,3 +1,18 @@
+# Sacrificial Session
+
+- Failure to create a Sacrificial Process can result in taking a service down.
+- This is because it is very easy to overwrite an existing Logon Sessions Kerberos Ticket.
+- If the local machine account (SYSTEM$) loses its Kerberos ticket, it will likely not get another one until a reboot.
+- If a service loses its ticket, it won't get a new one until the service restarts or sometimes a machine reboot.
+
+- A sacrificial process creates a new Logon Session and passes tickets to that session. This does require administrative rights to the machine and will create additional IOCs (Indicators of Compromise) that could be alerted upon. 
+- However, causing an outage during an engagement is much worse than getting caught due to safely doing things.
+
+```powershell
+.\Rubeus.exe createnetonly /program:"C:\Windows\System32\cmd.exe" /show
+```
+
+
 # Golden Ticket
 
 - The Golden Ticket attack enables attackers to forge and sign TGTs using the krbtgt account's password hash. 
