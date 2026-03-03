@@ -219,7 +219,9 @@ Command=ToggleDesktop
 
 ```shell
 # Password GPP
-
+netexec smb $TARGET_IP -u $USER -p $PASSWORD -M gpp_password
+# AutoLogin GPP
+netexec smb $TARGET_IP -u $USER -p $PASSWORD -M gpp_autologin
 ```
 
 ## NFS

