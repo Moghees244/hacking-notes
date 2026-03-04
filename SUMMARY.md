@@ -126,7 +126,7 @@
   * [Pivoting & Tunneling](miscellaneous/pivoting-and-tunneling.md)
   * [File Transfer Methods](miscellaneous/file-transfer-methods.md)
   * [Password Cracking](miscellaneous/password-cracking.md)
-  * [CrackMapExec](miscellaneous/cme.md)
+  * [NetExec](miscellaneous/nxc.md)
   * [Shells & Payloads](miscellaneous/shells-and-payloads.md)
   * [Tmux](miscellaneous/tmux.md)
   * [Burp Certs in Android](miscellaneous/android_burp.md)
