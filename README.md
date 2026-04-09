@@ -18,7 +18,7 @@ I am Moghees Ahmad. I'm working as Security Engineer at a Bank. I have passion f
 
 ## Certifications
 
-<embed src="docs/crto.pdf" type="application/pdf" width="100%" height="600px" />
+![CRTO Certificate](docs/crto.png)
 
 ## Current Activities
 
