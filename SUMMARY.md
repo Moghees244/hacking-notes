@@ -123,6 +123,8 @@
 -->
 
 * [🛠️ Miscellaneous](miscellaneous/README.md)
+  * [React Native Apps](android-pentesting/react_native_pentest_guide.md)
+  * [iOS Apps](android-pentesting/iOS_Pentesting_Guide.md)
   * [Pivoting & Tunneling](miscellaneous/pivoting-and-tunneling.md)
   * [File Transfer Methods](miscellaneous/file-transfer-methods.md)
   * [Password Cracking](miscellaneous/password-cracking.md)
