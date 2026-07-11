@@ -128,6 +128,7 @@
   * [Pivoting & Tunneling](miscellaneous/pivoting-and-tunneling.md)
   * [File Transfer Methods](miscellaneous/file-transfer-methods.md)
   * [Password Cracking](miscellaneous/password-cracking.md)
+  * [Sliver C2](miscellaneous/sliver_c2.md)
   * [NetExec](miscellaneous/nxc.md)
   * [Shells & Payloads](miscellaneous/shells-and-payloads.md)
   * [Tmux](miscellaneous/tmux.md)

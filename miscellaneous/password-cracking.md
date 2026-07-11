@@ -124,6 +124,27 @@ Get-DomainUser -Identity * | ? {$_.useraccountcontrol -like '*ENCRYPTED_TEXT_PWD
 
 > Secretsdump.py will save reversible passwords in plain text.
 
+### Skeleton Key
+
+- Skeleton key is a technique to bypass authentication by patching the lsass.exe process on the domain controller and hijacking the usual NTLM and Kerberos authentication flows. As a result, any user with a specific password can be authenticated and access sensitive resources and data on the network without knowing the actual password (the real password still works).
+
+```shell
+misc::skeleton
+```
+
+- we can use `mimikatz` as the `Skeleton key` and authenticate as any user in the domain.
+
+
+### Malicious SSP
+
+- Security Support Providers (SSPs) are a part of the Windows operating system that offer ways for an application to obtain an authenticated connection.
+- We can backdoor a custom SSP using mimikatz.
+
+```shell
+misc::memssp
+```
+- Next time when a user logs on, the plaintext password will be contained in the file C:\Windows\System32\mimilsa.log.
+
 ### Credential Hunting
 
 ```shell
